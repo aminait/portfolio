@@ -70,7 +70,7 @@ const Navbar = ({ nav, toggleNav }) => {
       </Box>
 
       {/* Desktop nav */}
-      <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+      <Box sx={{ display: { xs: 'none', md: 'block' }, whiteSpace: 'nowrap' }}>
         <List component={Stack} direction="row">
           {navItems.map((item) => (
             <ListItem
