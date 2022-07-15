@@ -32,6 +32,7 @@ const navItems = [
   { name: '_hello', link: '/' },
   { name: '_about-me', link: '/about' },
   { name: '_projects', link: '/projects' },
+  { name: '_contact-me', link: '/contact' },
 ];
 
 const Navbar = ({ nav, toggleNav }) => {
@@ -55,7 +56,7 @@ const Navbar = ({ nav, toggleNav }) => {
         sx={{
           width: {
             xs: '75%',
-            md: '15%',
+            md: '12%',
           },
           color: (theme) => theme.palette.secondary.main,
           borderRight: '2px solid #1E2D3D',

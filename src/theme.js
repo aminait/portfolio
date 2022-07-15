@@ -30,7 +30,7 @@ const themeOptions = {
       main: '#4D5BCE',
       secondary: '#43D9AD',
     },
-    lines: { main: '#1E2D3D' },
+    lines: { main: '#607B96' },
   },
   typography: {
     fontFamily: ['Fira Code, monospace', 'sans-serif'].join(','),

@@ -23,8 +23,13 @@ const Footer = ({ nav, toggleNav }) => {
     {
       icon: 'akar-icons:instagram-fill',
       link: '#',
-      name: 'Instagram ',
+      name: 'Instagram',
     },
+    // {
+    //   icon: 'ant-design:github-outlined',
+    //   link: '#',
+    //   name: 'Github',
+    // },
   ];
   return (
     <Box
@@ -85,6 +90,24 @@ const Footer = ({ nav, toggleNav }) => {
           </ListItem>
         ))}
       </List>
+      <ListItem sx={{ borderRight: '2px solid #1E2D3D' }}>
+        <p>@aminait</p>
+        <Link href="#" passHref={true}>
+          <Tooltip title="GitHub" placement="top">
+            <CustomIcon
+              icon="ant-design:github-outlined"
+              sx={{
+                width: 15,
+                height: 15,
+                color: (theme) => theme.palette.secondary.main,
+                '&:hover': {
+                  color: 'white',
+                },
+              }}
+            />
+          </Tooltip>
+        </Link>
+      </ListItem>
       {/* </Stack> */}
     </Box>
   );

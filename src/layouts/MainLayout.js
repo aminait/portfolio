@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import { styled } from '@mui/material/styles';
+import { Grid } from '@mui/material';
 
 const BgStyle = styled('main')(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -28,7 +29,18 @@ const MainLayout = ({ children }) => {
     <BgStyle>
       <MainStyle>
         <Navbar nav={nav} toggleNav={toggleNav} />
-        {children}
+        <Grid
+          container
+          display="flex"
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            height: '85%',
+          }}
+        >
+          {children}
+        </Grid>
         <Footer />
       </MainStyle>
     </BgStyle>
