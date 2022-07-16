@@ -16,19 +16,17 @@ const BindInput = ({ values }) => {
   })
   `;
   return (
-    <div>
-      <CodeBlock
-        text={code}
-        language={'javascript'}
-        showLineNumbers={true}
-        theme={anOldHope}
-        wrapLines
-        codeBlock
-        customStyle={{
-          background: 'none',
-        }}
-      />
-    </div>
+    <CodeBlock
+      text={code}
+      language={'javascript'}
+      showLineNumbers={true}
+      theme={anOldHope}
+      wrapLines
+      codeBlock
+      customStyle={{
+        background: 'none',
+      }}
+    />
   );
 };
 

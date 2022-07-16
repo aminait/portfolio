@@ -1,4 +1,6 @@
 import React from 'react';
+import Head from 'next/head';
+
 import MainLayout from '../layouts/MainLayout';
 import ProjectsSideNav from '../components/projects/ProjectsSideNav';
 import { Grid } from '@mui/material';
@@ -25,40 +27,45 @@ const projects = [
 ];
 const Projects = () => {
   return (
-    <Grid
-      container
-      justifyContent="start"
-      sx={{
-        height: '100%',
-        // '&>:nth-child(n)': {
-        //   borderRight: `2px solid #1E2D3D`,
-        //   height: 'inherit',
-        // },
-      }}
-    >
+    <>
+      <Head>
+        <title>Amina Ait | Projects</title>
+      </Head>
       <Grid
-        item
+        container
+        justifyContent="start"
         sx={{
-          width: {
-            xs: '75%',
-            md: '12%',
-          },
-          borderRight: `2px solid #1E2D3D`,
+          height: '100%',
+          // '&>:nth-child(n)': {
+          //   borderRight: `2px solid #1E2D3D`,
+          //   height: 'inherit',
+          // },
         }}
       >
-        <ProjectsSideNav />
-      </Grid>
-      <Grid item>
-        <Grid container direction="row" spacing={2}>
-          {/* <EmptyState /> */}
-          {projects.map((project, id) => (
-            <Grid item key={id}>
-              <ProjectCard project={project} />
-            </Grid>
-          ))}
+        <Grid
+          item
+          sx={{
+            width: {
+              xs: '75%',
+              md: '12%',
+            },
+            borderRight: `2px solid #1E2D3D`,
+          }}
+        >
+          <ProjectsSideNav />
+        </Grid>
+        <Grid item>
+          <Grid container direction="row" spacing={2}>
+            {/* <EmptyState /> */}
+            {projects.map((project, id) => (
+              <Grid item key={id}>
+                <ProjectCard project={project} />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

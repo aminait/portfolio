@@ -23,24 +23,17 @@ const MainStyle = styled('div')(({ theme }) => ({
   height: '90%',
 }));
 
+const MainView = styled('div')(({ theme }) => ({
+  height: '88%',
+}));
+
 const MainLayout = ({ children }) => {
   const [nav, toggleNav] = useState(false);
   return (
     <BgStyle>
       <MainStyle>
         <Navbar nav={nav} toggleNav={toggleNav} />
-        <Grid
-          container
-          display="flex"
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          sx={{
-            height: '85%',
-          }}
-        >
-          {children}
-        </Grid>
+        <MainView>{children}</MainView>
         <Footer />
       </MainStyle>
     </BgStyle>
