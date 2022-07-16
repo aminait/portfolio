@@ -40,6 +40,18 @@ const themeOptions = {
   typography: {
     fontFamily: ['Fira Code, monospace', 'sans-serif'].join(','),
   },
+  // overrides: {
+  //   MuiCheckbox: {
+  //     styleOverrides: {
+  //       colorPrimary: {
+  //         color: '#607B96',
+  //         '&$checked': {
+  //           color: '#607B96',
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
 };
 
 export default function ThemeProvider({ children }) {

@@ -16,6 +16,7 @@ export default function Home() {
     setFade(true);
   }, []);
 
+  // TODO - make font smaller
   return (
     <>
       <Head>
@@ -34,9 +35,15 @@ export default function Home() {
         spacing={2}
       >
         <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Grid container direction="column" spacing={4} ref={containerRef}>
+          <Grid
+            container
+            direction="column"
+            justify="space-around"
+            spacing={8}
+            ref={containerRef}
+          >
+            {/* COLOR BG */}
             <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
-              {' '}
               <Box
                 sx={{
                   position: 'absolute',
@@ -74,7 +81,10 @@ export default function Home() {
 
               <Box ref={boxRef}>
                 <Slide in={fade} direction="up" container={boxRef.current}>
-                  <Typography variant="h5">{`> ${title}`}</Typography>
+                  <Typography
+                    variant="h5"
+                    sx={{ color: (theme) => theme.palette.secondary.purple }}
+                  >{`> ${title}`}</Typography>
                 </Slide>
               </Box>
             </Grid>
@@ -93,18 +103,50 @@ export default function Home() {
             >
               <Typography
                 sx={{ color: (theme) => theme.palette.secondary.main }}
+                // variant="body2"
               >
                 {'// complete the game to continue'}
               </Typography>
               <Typography
                 sx={{ color: (theme) => theme.palette.secondary.main }}
+                // variant="body2"
               >
                 {'// you can also see it on my Github page'}
               </Typography>
 
-              <Typography>
-                {'const githubLink = "https://github.com/aminait"'}
-              </Typography>
+              <Box
+                component="div"
+                display="inline"
+                sx={{ color: (theme) => theme.palette.secondary.purple }}
+              >
+                {'const '}
+              </Box>
+              <Box
+                component="div"
+                display="inline"
+                sx={{ color: (theme) => theme.palette.accent.green }}
+              >
+                {'githubLink '}
+              </Box>
+              <Box
+                component="div"
+                display="inline"
+                sx={{ color: (theme) => theme.palette.common.white }}
+              >
+                {'= '}
+              </Box>
+              <a href="https://github.com/aminait">
+                <Box
+                  component="a"
+                  display="inline"
+                  sx={{
+                    color: (theme) => theme.palette.accent.orange,
+                    textDecoration: 'none',
+                  }}
+                >
+                  {'"https://github.com/aminait"'}
+                </Box>
+              </a>
             </Grid>
           </Grid>
         </Grid>
@@ -147,7 +189,7 @@ export default function Home() {
           >
             hello
           </Box>
-          snake game
+          snake game (coming soon)
         </Grid>
       </Grid>
     </>

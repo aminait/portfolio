@@ -48,6 +48,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   //   borderTop: `1px solid ${theme.palette.lines.main}`,
   borderBottom: `2px solid ${theme.palette.lines.light}`,
+  color: theme.palette.secondary.main,
 }));
 
 export default function Dropdown({
