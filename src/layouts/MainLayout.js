@@ -16,7 +16,7 @@ const BgStyle = styled('main')(({ theme }) => ({
 const MainStyle = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.primary.lighter,
   borderRadius: '0.5rem',
-  borderColor: theme.palette.lines.main,
+  borderColor: '#1E2D3D',
   borderStyle: 'solid',
   borderWidth: '2px',
   width: '95%',

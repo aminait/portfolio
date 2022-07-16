@@ -8,6 +8,7 @@ import {
 // TODO - Add typography sizes
 const themeOptions = {
   palette: {
+    type: 'dark',
     common: { black: '#000', white: '#fff' },
     primary: {
       main: '#01080E',
@@ -30,7 +31,11 @@ const themeOptions = {
       main: '#4D5BCE',
       secondary: '#43D9AD',
     },
-    lines: { main: '#607B96' },
+    lines: { main: '#607B96', light: '#1E2D3D' },
+    text: {
+      primary: '#000',
+      secondary: '#000',
+    },
   },
   typography: {
     fontFamily: ['Fira Code, monospace', 'sans-serif'].join(','),

@@ -18,6 +18,10 @@ export default function ProjectCard({ project }) {
           maxWidth: 300,
           backgroundColor: (theme) => theme.palette.primary.light,
           color: (theme) => theme.palette.secondary.main,
+          borderColor: (theme) => theme.palette.lines.light,
+          borderRadius: '0.5rem',
+          borderStyle: 'solid',
+          borderWidth: '2px',
         }}
       >
         <CardActionArea>
@@ -32,8 +36,15 @@ export default function ProjectCard({ project }) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="secondary">
-            Share
+          <Button
+            size="small"
+            sx={{
+              backgroundColor: (theme) => theme.palette.lines.light,
+              color: 'white',
+              textTransform: 'none',
+            }}
+          >
+            view-project
           </Button>
         </CardActions>
       </Card>

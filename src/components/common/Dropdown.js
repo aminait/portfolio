@@ -33,7 +33,7 @@ const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
-  borderBottom: `2px solid ${theme.palette.lines.main}`,
+  borderBottom: `2px solid ${theme.palette.lines.light}`,
   color: theme.palette.secondary.main,
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
@@ -47,7 +47,7 @@ const AccordionSummary = styled((props) => (
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   //   borderTop: `1px solid ${theme.palette.lines.main}`,
-  borderBottom: `2px solid ${theme.palette.lines.main}`,
+  borderBottom: `2px solid ${theme.palette.lines.light}`,
 }));
 
 export default function Dropdown({
@@ -55,7 +55,7 @@ export default function Dropdown({
   children = 'wee',
   isFirst,
   sx,
-  isOpen = true,
+  isOpen,
 }) {
   const [expanded, setExpanded] = React.useState(isOpen);
 
