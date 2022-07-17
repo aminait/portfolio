@@ -32,7 +32,7 @@ const StyledTextField = styled((props) => (
   marginBottom: '1.5rem',
 }));
 
-const ContactForm = ({ handleChange }) => {
+const ContactForm = ({ handleChange, handleSubmit }) => {
   // useEffect(() => {
   //   setValues((prevValues) => ({ ...prevValues, email: 'Jonahatham' }));
   // });
@@ -73,6 +73,9 @@ const ContactForm = ({ handleChange }) => {
           color: 'white',
           textTransform: 'none',
         }}
+        // onSubmit={handleSubmit}
+        onClick={handleSubmit}
+        // TODO add enter key event
       >
         submit-message
       </Button>

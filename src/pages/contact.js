@@ -5,8 +5,18 @@ import MainLayout from '../layouts/MainLayout';
 import BindInput from '../components/contact/BindInput';
 import ContactForm from '../components/contact/ContactForm';
 
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import Dropdown from '../components/common/Dropdown';
+import CustomIcon from '../components/common/CustomIcon';
+import SuccessState from '../components/contact/SuccessState';
+
+const contacts = [
+  {
+    name: 'aminait@outlook.com',
+    icon: 'ri:mail-fill',
+  },
+];
+
 const ContactMe = () => {
   const [values, setValues] = useState({
     name: '',
@@ -14,9 +24,8 @@ const ContactMe = () => {
     message: '',
     date: new Date(Date.now()).toLocaleString(),
   });
-  console.log('ContactMe -> values', values);
-
   const [submitted, setSubmitted] = useState(false);
+  console.log('ContactMe -> values', values);
 
   const handleChange = useCallback((e) => {
     const eventName = e.target.name;
@@ -26,7 +35,20 @@ const ContactMe = () => {
     });
   }, []);
 
-  const handleSubmit = {};
+  const handleSubmit = () => {
+    console.log('submiiiiit');
+    setSubmitted(true);
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setValues({
+      name: '',
+      email: '',
+      message: '',
+      date: new Date(Date.now()).toLocaleString(),
+    });
+  };
   return (
     <>
       <Head>
@@ -34,10 +56,10 @@ const ContactMe = () => {
       </Head>
 
       <Grid
+        // direction="row"
+        // spacing={4}
         container
-        direction="row"
-        spacing={4}
-        // justifyContent="center"
+        justifyContent="start"
         sx={{
           height: '100%',
         }}
@@ -52,15 +74,49 @@ const ContactMe = () => {
             borderRight: `2px solid #1E2D3D`,
           }}
         >
-          <Dropdown text="contacts"></Dropdown>
+          <Dropdown text="contacts">
+            {contacts.map((contact, i) => (
+              <div key={i}>
+                <Typography variant="p">
+                  <CustomIcon icon={contact.icon} />
+                  {contact.name}
+                </Typography>
+              </div>
+            ))}
+          </Dropdown>
         </Grid>
-        <Grid item sx={{ borderRight: `2px solid #1E2D3D` }}>
-          <ContactForm
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />{' '}
+        <Grid
+          item
+          sx={{
+            width: {
+              xs: '75%',
+              md: '44%',
+            },
+            borderRight: `2px solid #1E2D3D`,
+            paddingTop: submitted ? '20rem' : '5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'start',
+            alignItems: 'center',
+          }}
+        >
+          {submitted ? (
+            <SuccessState resetForm={resetForm} />
+          ) : (
+            <ContactForm
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
+          )}
         </Grid>
-        <Grid item sx={{ display: { xs: 'none', md: 'block' } }}>
+        <Grid
+          item
+          sx={{
+            display: { xs: 'none', md: 'block' },
+            paddingTop: '5rem',
+            paddingLeft: '2rem',
+          }}
+        >
           <BindInput values={values} />
         </Grid>
       </Grid>
