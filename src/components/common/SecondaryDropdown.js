@@ -10,7 +10,6 @@ import CustomIcon from './CustomIcon';
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
   '&:not(:last-child)': {
     borderBottom: 0,
   },
@@ -33,7 +32,6 @@ const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
-  borderBottom: `2px solid ${theme.palette.lines.light}`,
   color: theme.palette.secondary.main,
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
@@ -47,11 +45,10 @@ const AccordionSummary = styled((props) => (
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   //   borderTop: `1px solid ${theme.palette.lines.main}`,
-  borderBottom: `2px solid ${theme.palette.lines.light}`,
   color: theme.palette.secondary.main,
 }));
 
-export default function Dropdown({
+export default function SecondaryDropdown({
   text = 'professional-info',
   children = 'wee',
   isFirst,

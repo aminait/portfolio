@@ -10,6 +10,7 @@ import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 import CustomIcon from '../common/CustomIcon';
+import SecondaryDropdown from '../common/SecondaryDropdown';
 
 const profItems = [
   {
@@ -98,6 +99,44 @@ const AboutSideNav = () => {
               {item.subItems.map((subItem, i) => {
                 {
                   const listId = `checkbox-list-label-${subItem}`;
+
+                  if (subItem.type === 'folder') {
+                    const text = (
+                      <>
+                        <CustomIcon
+                          icon={'ri:folder-3-fill'}
+                          sx={{ marginRight: '5px' }}
+                        />
+                        {subItem.name}
+                      </>
+                    );
+                    return (
+                      <SecondaryDropdown key={i} text={text}>
+                        <ListItem key={subItem.name} disablePadding>
+                          <ListItemButton
+                            role={undefined}
+                            // onClick={handleToggle(stack)}
+                            disableRipple
+                          >
+                            <CustomIcon
+                              icon={'ri:file-info-line'}
+                              sx={{ marginRight: '5px' }}
+                            />
+
+                            <ListItemText
+                              id={listId}
+                              primary={subItem.name}
+                              sx={{
+                                '&.active .MuiTypography-root': {
+                                  fontWeight: 'bold',
+                                },
+                              }}
+                            />
+                          </ListItemButton>
+                        </ListItem>
+                      </SecondaryDropdown>
+                    );
+                  }
                   return (
                     <ListItem key={subItem.name} disablePadding>
                       <ListItemButton
@@ -105,6 +144,10 @@ const AboutSideNav = () => {
                         // onClick={handleToggle(stack)}
                         disableRipple
                       >
+                        <CustomIcon
+                          icon={'ri:file-info-line'}
+                          sx={{ marginRight: '5px' }}
+                        />
                         <ListItemText
                           id={listId}
                           primary={subItem.name}
