@@ -1,9 +1,6 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
-
-import React from 'react';
-
 import { useRouter } from 'next/router';
-
 import {
   Box,
   Stack,
@@ -12,92 +9,146 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import CustomIcon from '../components/common/CustomIcon';
 
-const RootStyle = styled('div')(({ theme }) => ({
-  width: '95%',
-  position: 'relative',
-  backgroundColor: theme.palette.primary.light,
-  borderRadius: '0.5rem',
-  // overflow: 'hidden',
-  borderColor: 'white',
-}));
-
-// const styles = {
-//   about: {},
-// };
-
 const navItems = [
-  { name: '_hello', link: '/' },
-  { name: '_about-me', link: '/about' },
-  { name: '_projects', link: '/projects' },
-  { name: '_contact-me', link: '/contact' },
+  { name: '_hello', link: '/', align: 'left' },
+  { name: '_about-me', link: '/about', align: 'left' },
+  { name: '_projects', link: '/projects', align: 'left' },
 ];
+
+const activeStyles = {
+  borderBottom: '0px',
+  borderBottomColor: (theme) => theme.palette.accent.main,
+  borderBottomWidth: '2px',
+  borderBottomStyle: 'solid',
+  transitionDuration: '150ms',
+};
+const listItemStyles = {
+  cursor: 'pointer',
+  height: '100%',
+  borderBottom: '0px',
+  borderBottomColor: (theme) => theme.palette.primary.lighter,
+  borderBottomWidth: '2px',
+  borderBottomStyle: 'solid',
+  '&:hover': {
+    ...activeStyles,
+  },
+};
 
 const Navbar = ({ nav, toggleNav }) => {
   const path = useRouter().pathname;
-  console.log('Navbar -> path', path);
+  const [closeMenu, setCloseMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setCloseMenu((prev) => !prev);
+    toggleNav((prev) => !prev);
+  };
 
   return (
-    // <RootStyle>
     <Box
       sx={{
-        // borderBottomWidth: '2px',
-        // borderBottomColor: (theme) => theme.palette.lines,
         display: 'flex',
         direction: 'row',
         borderBottom: '2px solid #1E2D3D',
-        // textAlign: 'center',
-        // borderRadius: '40px',
       }}
     >
-      <Typography
+      <Link href={'/'} passHref={true}>
+        <Box
+          sx={{
+            width: {
+              xs: '75%',
+              md: '12%',
+            },
+            color: (theme) => theme.palette.secondary.main,
+            cursor: 'pointer',
+          }}
+        >
+          <Typography sx={{ textAlign: 'center', margin: '1rem' }}>
+            amina-ait
+          </Typography>
+        </Box>
+      </Link>
+      {/* Mobile nav */}
+      <Box
         sx={{
-          width: {
-            xs: '75%',
-            md: '12%',
-          },
-          color: (theme) => theme.palette.secondary.main,
-          borderRight: '2px solid #1E2D3D',
+          display: { xs: 'flex', md: 'none' },
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          width: '100%',
+          marginRight: '1rem',
+          fontSize: '25px',
         }}
       >
-        amina-ait
-      </Typography>
-      {/* Mobile nav */}
-      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        <CustomIcon icon="charm:menu-hamburger" />
-        <CustomIcon icon="codicon:chrome-close" />
+        {closeMenu ? (
+          <CustomIcon
+            icon="codicon:chrome-close"
+            sx={{ color: '#607B96' }}
+            onClick={toggleMenu}
+          />
+        ) : (
+          <CustomIcon
+            icon={'charm:menu-hamburger'}
+            sx={{ color: '#607B96' }}
+            onClick={toggleMenu}
+          />
+        )}
       </Box>
 
       {/* Desktop nav */}
-      <Box sx={{ display: { xs: 'none', md: 'block' }, whiteSpace: 'nowrap' }}>
-        <List component={Stack} direction="row">
-          {navItems.map((item) => (
+      <Box
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          whiteSpace: 'nowrap',
+        }}
+      >
+        <List component={Stack} direction="row" sx={{ padding: 0 }}>
+          {navItems.map((item, i) => (
             <ListItem
               key={item.name}
               disablePadding
               sx={{
+                ...listItemStyles,
+                ...(i === 0 && { borderLeft: '2px solid #1E2D3D' }),
+                ...(path === item.link && activeStyles),
                 borderRight: '2px solid #1E2D3D',
-                cursor: 'pointer',
-                '&:hover': {
-                  borderBottom: '0px',
-                  borderBottomColor: (theme) => theme.palette.accent.main,
-                  borderBottomWidth: '4px',
-                  borderBottomStyle: 'solid',
-                  transitionDuration: '1000',
-                },
               }}
             >
               <Link href={item.link} passHref={true}>
-                <ListItemText primary={item.name} />
+                <ListItemText
+                  primary={item.name}
+                  sx={{
+                    textAlign: 'center',
+                    margin: '1rem',
+                    lineHeight: '1rem',
+                  }}
+                />
               </Link>
             </ListItem>
           ))}
+
+          <ListItem
+            disablePadding
+            sx={{
+              ...listItemStyles,
+              ...(path === '/contact' && activeStyles),
+              marginLeft: '55vw',
+              borderLeft: '2px solid #1E2D3D',
+            }}
+          >
+            <Link href={'contact'} passHref={true}>
+              <ListItemText
+                primary="contact-me"
+                sx={{
+                  textAlign: 'center',
+                  margin: '1rem',
+                }}
+              />
+            </Link>
+          </ListItem>
         </List>
       </Box>
     </Box>
-    // </RootStyle>
   );
 };
 

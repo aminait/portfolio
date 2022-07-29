@@ -14,15 +14,25 @@ export default async function (req, res) {
 
     const autoReplyOptions = {
       from: process.env.NEXT_APP_EMAIL,
-      to: 'amouissaden@gmail.com',
+      to: email,
       subject: 'Your email has been received!',
       html: '<div>Thank you for contacting us</div>',
+    };
+    const contactOptions = {
+      from: process.env.NEXT_APP_EMAIL,
+      to: email,
+      subject: 'You got an email',
+      html: `<div${message} from ${email}</div>`,
     };
     sendgrid
       .send(autoReplyOptions)
       .then(() => {
         console.log('Email sent');
         storeMail({ name, email, message, date });
+        sendgrid.send(contactOptions).then(() => {
+          console.log('contact sent');
+          // return res.json({ success: true });
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -31,6 +41,5 @@ export default async function (req, res) {
     console.log('error', error);
     return res.status(error.statusCode || 500).json({ error: error.message });
   }
-
   return res.json({ success: true });
 }

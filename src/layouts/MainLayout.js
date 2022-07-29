@@ -19,8 +19,8 @@ const MainStyle = styled('div')(({ theme }) => ({
   borderColor: '#1E2D3D',
   borderStyle: 'solid',
   borderWidth: '2px',
-  width: '95%',
-  height: '90%',
+  width: '98%',
+  height: '95%',
 }));
 
 const MainView = styled('div')(({ theme }) => ({
