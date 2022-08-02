@@ -10,6 +10,7 @@ import FileTabs from '../components/about/FileTabs';
 import FileTabPanel from '../components/about/FileTabPanel';
 import EmptyState from '../components/common/EmptyState';
 import CodeSnippetList from '../components/about/showcase/CodeSnippetList';
+import { codeSnippets } from '../content/codeSnippets';
 const About = () => {
   const [openTabs, setOpenTabs] = useState([]);
   const [activeTab, setActiveTab] = useState(null);
@@ -111,11 +112,14 @@ const About = () => {
               ></Box>
               <PerfectScrollbar>
                 <Typography
-                  sx={{ color: (theme) => theme.palette.secondary.main }}
+                  sx={{
+                    color: (theme) => theme.palette.secondary.main,
+                    margin: '10px 10px 0 10px',
+                  }}
                 >
-                  {'// Code Snippet Showcase;'}
+                  {'// Code Snippet Showcase:'}
                 </Typography>
-                <CodeSnippetList />
+                <CodeSnippetList codeSnippets={codeSnippets} />
               </PerfectScrollbar>
             </Grid>
           </Grid>

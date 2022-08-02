@@ -1,10 +1,10 @@
 import React from 'react';
 import CodeSnippet from './CodeSnippet';
-const CodeSnippetList = () => {
+const CodeSnippetList = ({ codeSnippets }) => {
   return (
     <>
-      {[0, 1, 2, 3].map((index) => (
-        <CodeSnippet key={index} />
+      {codeSnippets.map((codeSnippet, index) => (
+        <CodeSnippet codeSnippet={codeSnippet} key={index} />
       ))}
     </>
   );
