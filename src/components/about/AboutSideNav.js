@@ -89,7 +89,7 @@ const navItems = [
 ];
 console.log('navItems', navItems);
 
-const AboutSideNav = () => {
+const AboutSideNav = ({ handleClickFile }) => {
   return (
     <>
       {navItems.map((item, i) => {
@@ -115,7 +115,7 @@ const AboutSideNav = () => {
                         <ListItem key={subItem.name} disablePadding>
                           <ListItemButton
                             role={undefined}
-                            // onClick={handleToggle(stack)}
+                            onClick={() => handleClickFile(subItem.name)}
                             disableRipple
                           >
                             <CustomIcon
@@ -141,7 +141,7 @@ const AboutSideNav = () => {
                     <ListItem key={subItem.name} disablePadding>
                       <ListItemButton
                         role={undefined}
-                        // onClick={handleToggle(stack)}
+                        onClick={() => handleClickFile(subItem.name)}
                         disableRipple
                       >
                         <CustomIcon

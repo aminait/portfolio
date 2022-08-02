@@ -45,6 +45,25 @@ const projects = [
   },
 ];
 const Projects = () => {
+  // function applySortFilter({ projectData, filterTags }) {
+  //   if (filterTags.length) {
+  //     // projectData = projectData.filter((item) =>
+  //     //   filterTags.filter((filterTag) => item.tags.includes(filterTag))
+  //     // );
+  //     projectData = filterTags.forEach((filterTag) =>
+  //       projectData.filter((item) => item.tags.includes(filterTag))
+  //     );
+  //   }
+  //   console.log('applySortFilter -> projectData', projectData);
+
+  //   return projectData;
+  // }
+
+  // const res = applySortFilter({
+  //   projectData: projects,
+  //   filterTags: ['nodejs'],
+  // });
+  // console.log('Projects -> res', res);
   return (
     <>
       <Head>

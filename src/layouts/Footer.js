@@ -18,7 +18,7 @@ const Footer = ({ nav, toggleNav }) => {
     {
       icon: 'fa:linkedin',
       link: '#',
-      name: 'LinkedIn ',
+      name: 'LinkedIn',
     },
     {
       icon: 'akar-icons:instagram-fill',
@@ -34,22 +34,27 @@ const Footer = ({ nav, toggleNav }) => {
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: {
+          xs: 'none',
+          md: 'block',
+        },
         direction: 'row',
         borderTop: '2px solid #1E2D3D',
+        borderBottom: '2px solid #1E2D3D',
         // position: 'relative',
-        // bottom: '-2px',
-        // width: '100%',
-        // bottom: '-80%', // ONLY SHOW WHEN MOBILE MENU IS ON
+        bottom: '-2px',
+        bottom: '-80%', // ONLY SHOW WHEN MOBILE MENU IS ON
       }}
     >
       {/* <Stack direction="row" flexWrap="wrap" alignItems="center"> */}
       <List
         component={Stack}
         direction="row"
+        display="flex"
         sx={{
           color: (theme) => theme.palette.secondary.main,
           whiteSpace: 'nowrap',
+          padding: 0,
         }}
       >
         <ListItem sx={{ borderRight: '2px solid #1E2D3D' }}>
@@ -90,7 +95,7 @@ const Footer = ({ nav, toggleNav }) => {
           </ListItem>
         ))}
       </List>
-      <ListItem sx={{ borderRight: '2px solid #1E2D3D' }}>
+      <ListItem sx={{ borderRight: '2px solid #1E2D3D', marginLeft: '55vw' }}>
         <p>@aminait</p>
         <Link href="#" passHref={true}>
           <Tooltip title="GitHub" placement="top">

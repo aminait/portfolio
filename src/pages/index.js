@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import { Grid, Typography, Box, Slide } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
+import Game from '../components/snake-game/game';
 
 export default function Home() {
   const [fade, setFade] = useState(false);
@@ -170,9 +171,7 @@ export default function Home() {
               filter: 'blur(140px)',
               transform: 'rotate(-94.3deg)',
             }}
-          >
-            hi
-          </Box>
+          ></Box>
           <Box
             sx={{
               position: 'absolute',
@@ -186,10 +185,8 @@ export default function Home() {
               filter: 'blur(140px)',
               transform: 'rotate(13.51deg)',
             }}
-          >
-            hello
-          </Box>
-          snake game (coming soon)
+          ></Box>
+          {/* <Game /> */}
         </Grid>
       </Grid>
     </>

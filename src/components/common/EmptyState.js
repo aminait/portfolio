@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-const EmptyState = () => {
-  const lines = ['/**', '* No editor open', '*/'];
+
+const defaultLines = ['/**', '* No editor open', '*/'];
+const EmptyState = ({ lines = defaultLines }) => {
   return lines.map((line, index) => (
     <Typography
       key={index}

@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import { styled } from '@mui/material/styles';
 import { Grid } from '@mui/material';
+import HorizontalBar from './HorizontalBar';
 
 const BgStyle = styled('main')(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -24,17 +25,54 @@ const MainStyle = styled('div')(({ theme }) => ({
 }));
 
 const MainView = styled('div')(({ theme }) => ({
-  height: '88%',
+  height: '87%',
 }));
+
+const topNavItems = {
+  main: {
+    name: 'amina-ait',
+    link: '/',
+  },
+  items: [
+    { name: '_hello', link: '/' },
+    { name: '_about-me', link: '/about' },
+    { name: '_projects', link: '/projects' },
+  ],
+  rightNavItem: { name: 'contact-me', link: '/contact' },
+};
+
+const bottomNavItems = {
+  main: { name: 'Find me on:', link: '' },
+  items: [
+    { icon: 'fa:linkedin', link: '#', name: 'LinkedIn' },
+    { icon: 'akar-icons:instagram-fill', link: '#', name: 'Instagram' },
+    {
+      icon: 'ant-design:github-outlined',
+      name: '@aminait',
+      link: '/contact',
+    },
+  ],
+};
 
 const MainLayout = ({ children }) => {
   const [nav, toggleNav] = useState(false);
   return (
     <BgStyle>
       <MainStyle>
-        <Navbar nav={nav} toggleNav={toggleNav} />
+        <HorizontalBar
+          nav={nav}
+          toggleNav={toggleNav}
+          isTop={true}
+          navItems={topNavItems}
+        />
         <MainView>{children}</MainView>
-        <Footer />
+        {/* <Footer /> */}
+        <HorizontalBar
+          nav={nav}
+          toggleNav={toggleNav}
+          isTop={false}
+          navItems={bottomNavItems}
+        />
       </MainStyle>
     </BgStyle>
   );
