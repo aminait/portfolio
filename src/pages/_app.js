@@ -1,5 +1,6 @@
 // import '../styles/globals.css';
 import Head from 'next/head';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import ThemeProvider from '../theme';
 

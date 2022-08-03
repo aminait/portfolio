@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import { Box, Grid, Typography } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
 import AboutSideNav from '../components/about/AboutSideNav';
-import FileTabs from '../components/about/FileTabs';
-import FileTabPanel from '../components/about/FileTabPanel';
+import FileTabs from '../components/about/tabs/FileTabs';
+// import FileTabPanel from '../components/about/FileTabPanel';
 import EmptyState from '../components/common/EmptyState';
 import CodeSnippetList from '../components/about/showcase/CodeSnippetList';
 import { codeSnippets } from '../content/codeSnippets';
@@ -51,9 +50,12 @@ const About = () => {
               md: '12%',
             },
             borderRight: '2px solid #1E2D3D',
+            height: '47rem',
           }}
         >
-          <AboutSideNav handleClickFile={handleClickFile} />
+          <PerfectScrollbar>
+            <AboutSideNav handleClickFile={handleClickFile} />
+          </PerfectScrollbar>
         </Grid>
         <Grid
           item
@@ -104,12 +106,6 @@ const About = () => {
                 display: { xs: 'none', md: 'block' },
               }}
             >
-              <Box
-                sx={{
-                  borderBottom: '2px solid #1E2D3D',
-                  height: '51px',
-                }}
-              ></Box>
               <PerfectScrollbar>
                 <Typography
                   sx={{

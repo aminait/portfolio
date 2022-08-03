@@ -84,8 +84,9 @@ const navItems = [
   {
     text: 'professional-info',
     subItems: profItems,
+    isOpen: true,
   },
-  { text: 'personal-info', subItems: personalItems },
+  { text: 'personal-info', subItems: personalItems, isOpen: false },
 ];
 console.log('navItems', navItems);
 
@@ -94,7 +95,7 @@ const AboutSideNav = ({ handleClickFile }) => {
     <>
       {navItems.map((item, i) => {
         return (
-          <Dropdown key={i} text={item.text}>
+          <Dropdown key={i} text={item.text} isOpen={item.isOpen}>
             <List>
               {item.subItems.map((subItem, i) => {
                 {
