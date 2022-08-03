@@ -6,8 +6,9 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import CustomIcon from '../../common/CustomIcon';
-import { Grid } from '@mui/material';
+import { Stack } from '@mui/material';
 import { Box, Typography } from '@mui/material';
+import ScrollBar from 'react-perfect-scrollbar';
 
 const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
   backgroundColor: theme.palette.primary.lighter,
@@ -19,7 +20,6 @@ const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
 
 const Tab = styled(TabUnstyled)(({ theme }) => ({
   color: '#607b96',
-  minWidth: '120px',
   cursor: 'pointer',
   backgroundColor: 'transparent',
   padding: '12px 16px',
@@ -57,26 +57,32 @@ export default function FileTabs({
 }) {
   return (
     <>
-      <Tabs defaultValue={activeTab} value={activeTab}>
-        <TabsList>
-          {tabs.map((tab, i) => (
-            <Tab key={i} onClick={() => setActiveTab(i)}>
-              <Grid container display="flex" justifyContent="space-between">
-                <Typography sx={{ marginRight: '10px' }}>{tab}</Typography>
-                <CustomIcon
-                  icon="ri:close-circle-fill"
-                  onClick={() => closeTab(tab)}
-                  sx={{
-                    margin: 'auto',
-                    '&:hover': {
-                      color: 'white',
-                    },
-                  }}
-                />
-              </Grid>
-            </Tab>
-          ))}
-        </TabsList>
+      <Tabs defaultValue={activeTab} value={activeTab} sx={{ width: 'revert' }}>
+        <ScrollBar>
+          <TabsList>
+            {tabs.map((tab, i) => (
+              <Tab key={i} onClick={() => setActiveTab(i)}>
+                <Stack
+                  display="flex"
+                  direction="row"
+                  justifyContent={'space-between'}
+                >
+                  <Typography sx={{ marginRight: '10px' }}>{tab}</Typography>
+                  <CustomIcon
+                    icon="ri:close-circle-fill"
+                    onClick={() => closeTab(tab)}
+                    sx={{
+                      margin: 'auto',
+                      '&:hover': {
+                        color: 'white',
+                      },
+                    }}
+                  />
+                </Stack>
+              </Tab>
+            ))}
+          </TabsList>
+        </ScrollBar>
         {tabs.map((tab, i) => (
           <TabPanel key={i} value={i}>{`smt${i}`}</TabPanel>
         ))}

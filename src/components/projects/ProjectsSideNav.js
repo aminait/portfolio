@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 import Dropdown from '../common/Dropdown';
 import CustomIcon from '../common/CustomIcon';
+import { selectStack } from '../../content/stack';
 
 const dummyProjects = [
   {
@@ -19,37 +20,12 @@ const dummyProjects = [
   },
 ];
 
-const selectStack = [
-  {
-    name: 'React',
-    icon: 'ri:reactjs-fill',
-  },
-  {
-    name: 'Angular',
-    icon: 'ri:angularjs-fill',
-  },
-  {
-    name: 'Node.js',
-    icon: 'akar-icons:node-fill',
-  },
-  {
-    name: 'Firebase',
-    icon: 'bxl:firebase',
-  },
-  {
-    name: 'Mongodb',
-    icon: 'bxl:mongodb',
-  },
-  {
-    name: '.NET',
-    icon: 'simple-icons:dotnet',
-  },
-];
-
-const ProjectsSideNav = ({ projects = dummyProjects, handleCheck }) => {
-  const [checked, setChecked] = React.useState([0]);
+const ProjectsSideNav = ({ handleCheck }) => {
+  const [checked, setChecked] = React.useState([]);
+  console.log('ProjectsSideNav -> checked', checked);
 
   const handleToggle = (value) => () => {
+    console.log('handleToggle -> value', value);
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -60,10 +36,12 @@ const ProjectsSideNav = ({ projects = dummyProjects, handleCheck }) => {
     }
 
     setChecked(newChecked);
+    handleCheck(newChecked);
   };
+
   return (
     <>
-      <Dropdown text="projects">
+      <Dropdown text="projects" isOpen={true}>
         <List>
           {selectStack.map((stack, i) => {
             const labelId = `checkbox-list-label-${stack}`;

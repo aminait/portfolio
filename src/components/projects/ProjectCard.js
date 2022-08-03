@@ -39,11 +39,12 @@ export default function ProjectCard({ project, sx }) {
           borderRadius: '0.5rem',
           borderStyle: 'solid',
           borderWidth: '2px',
-          // display: 'flex',
-          // flexDirection: 'column',
-          // justifyContent: 'space-between',
-          // display: 'inline-block',/
-
+          transition: 'transform 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'scale3d(1.05, 1.05, 1)',
+            boxShadow:
+              '0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1)',
+          },
           ...sx,
         }}
       >

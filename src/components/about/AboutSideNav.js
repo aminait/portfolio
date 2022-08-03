@@ -16,6 +16,7 @@ const profItems = [
   {
     name: 'gazal',
     type: 'folder',
+    color: 'green',
     children: [
       {
         name: 'software-developer',
@@ -26,6 +27,7 @@ const profItems = [
   {
     name: 'dianurse',
     type: 'folder',
+    color: 'pink',
     children: [
       {
         name: 'backend-developer',
@@ -40,6 +42,7 @@ const profItems = [
   {
     name: 'opensoft-solutions',
     type: 'folder',
+    color: 'orange',
     children: [
       {
         name: 'software-engineer-intern',
@@ -57,10 +60,12 @@ const personalItems = [
   {
     name: 'education',
     type: 'folder',
+    color: 'main',
     children: [
       {
         name: 'university',
         type: 'file',
+        color: 'main',
       },
       {
         name: 'highschool',
@@ -71,6 +76,7 @@ const personalItems = [
   {
     name: 'interests',
     type: 'folder',
+    color: 'green',
     children: [
       {
         name: 'robotics',
@@ -106,7 +112,11 @@ const AboutSideNav = ({ handleClickFile }) => {
                       <>
                         <CustomIcon
                           icon={'ri:folder-3-fill'}
-                          sx={{ marginRight: '5px' }}
+                          sx={{
+                            marginRight: '5px',
+                            color: (theme) =>
+                              `${theme.palette.accent[subItem.color]}`,
+                          }}
                         />
                         {subItem.name}
                       </>
@@ -147,7 +157,7 @@ const AboutSideNav = ({ handleClickFile }) => {
                       >
                         <CustomIcon
                           icon={'ri:file-info-line'}
-                          sx={{ marginRight: '5px' }}
+                          sx={{ marginLeft: '20px', marginRight: '5px' }}
                         />
                         <ListItemText
                           id={listId}

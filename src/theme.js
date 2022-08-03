@@ -39,6 +39,7 @@ const themeOptions = {
   },
   typography: {
     fontFamily: ['Fira Code, monospace', 'sans-serif'].join(','),
+    fontSize: 12,
   },
   // overrides: {
   //   MuiCheckbox: {

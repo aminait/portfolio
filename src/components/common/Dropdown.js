@@ -45,10 +45,15 @@ const AccordionSummary = styled((props) => (
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: 0,
+  // padding: theme.spacing(2),
   //   borderTop: `1px solid ${theme.palette.lines.main}`,
   borderBottom: `2px solid ${theme.palette.lines.light}`,
   color: theme.palette.secondary.main,
+  '& .MuiAccordionDetails-root': {
+    padding: '0',
+    marginLeft: '20px',
+  },
 }));
 
 export default function Dropdown({
@@ -77,13 +82,7 @@ export default function Dropdown({
           timeout: 0,
         }}
       >
-        <AccordionSummary
-          sx={{
-            '&:hover': {
-              color: 'white',
-            },
-          }}
-        >
+        <AccordionSummary>
           <Typography>{text}</Typography>
         </AccordionSummary>
         <AccordionDetails>{children}</AccordionDetails>
