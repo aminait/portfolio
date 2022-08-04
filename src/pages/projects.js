@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 
 import MainLayout from '../layouts/MainLayout';
-import ProjectsSideNav from '../components/projects/ProjectsSideNav';
+import ProjectsSideNav from '../components/sections/projects/ProjectsSideNav';
 import { Grid } from '@mui/material';
 import EmptyState from '../components/common/EmptyState';
-import ProjectCard from '../components/projects/ProjectCard';
+import ProjectCard from '../components/sections/projects/ProjectCard';
 import { projects } from '../content/projects';
 
 const Projects = () => {
@@ -29,22 +29,16 @@ const Projects = () => {
       <Grid
         container
         justifyContent="start"
-        sx={{
-          height: '100%',
-          // '&>:nth-child(n)': {
-          //   borderRight: `2px solid #1E2D3D`,
-          //   height: 'inherit',
-          // },
-        }}
+        sx={{ height: { xs: 'auto', md: '100%' } }}
       >
         <Grid
           item
           sx={{
             width: {
-              xs: '75%',
+              xs: ' ',
               md: '12%',
             },
-            borderRight: `2px solid #1E2D3D`,
+            borderRight: '2px solid #1E2D3D',
           }}
         >
           <ProjectsSideNav handleCheck={handleCheck} />
@@ -56,8 +50,8 @@ const Projects = () => {
               direction="row"
               display="flex"
               // sx={{ padding: '3rem', marginLeft: '5rem' }}
-              alignItems="center"
-              justifyContent="space-between"
+              // alignItems="flex-start"
+              // justifyContent="space-between"
               spacing={2}
             >
               {projectsData.map((project, id) => (

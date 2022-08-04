@@ -8,9 +8,9 @@ import {
   Box,
   Slide,
   Divider,
+  Avatar,
 } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import CustomIcon from '../../common/CustomIcon';
+import CustomIcon from '../../../common/CustomIcon';
 
 const CodeSnippet = ({ codeSnippet }) => {
   const { code, timestamp, starCount, details } = codeSnippet;

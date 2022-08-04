@@ -2,13 +2,13 @@ import Head from 'next/head';
 import React, { useState, useCallback } from 'react';
 
 import MainLayout from '../layouts/MainLayout';
-import BindInput from '../components/contact/BindInput';
-import ContactForm from '../components/contact/ContactForm';
+import BindInput from '../components/sections/contact/BindInput';
+import ContactForm from '../components/sections/contact/ContactForm';
 
 import { Grid, Typography } from '@mui/material';
 import Dropdown from '../components/common/Dropdown';
 import CustomIcon from '../components/common/CustomIcon';
-import SuccessState from '../components/contact/SuccessState';
+import SuccessState from '../components/sections/contact/SuccessState';
 
 const contacts = [
   {

@@ -4,15 +4,30 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import { Box, Grid, Typography } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
-import AboutSideNav from '../components/about/AboutSideNav';
-import FileTabs from '../components/about/tabs/FileTabs';
+import AboutSideNav from '../components/sections/about/AboutSideNav';
+import FileTabs from '../components/sections/about/tabs/FileTabs';
 // import FileTabPanel from '../components/about/FileTabPanel';
 import EmptyState from '../components/common/EmptyState';
-import CodeSnippetList from '../components/about/showcase/CodeSnippetList';
+import CodeSnippetList from '../components/sections/about/showcase/CodeSnippetList';
 import { codeSnippets } from '../content/codeSnippets';
+import { tabPanels } from '../content/tabPanels';
+import { styled } from '@mui/system';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import { useResponsive } from '../hooks/useResponsive';
+
+const TabPanel = styled(TabPanelUnstyled)(({ theme }) => ({
+  width: '100%',
+  fontSize: '0.875rem',
+  padding: '1rem',
+}));
 const About = () => {
-  const [openTabs, setOpenTabs] = useState([]);
-  const [activeTab, setActiveTab] = useState(null);
+  const { isMobile } = useResponsive();
+  const defaultTab = tabPanels.find((panel) => panel.name === 'README');
+  console.log('About -> tabPanels', tabPanels);
+  console.log('About -> defaultTab', defaultTab);
+  const [openTabs, setOpenTabs] = useState([defaultTab.name]);
+  const [activeTab, setActiveTab] = useState(0);
+  const [content, setContent] = useState('');
   console.log('About -> activeTab', activeTab);
   const tabs = [{ name: 'one' }, { name: 'two' }];
   const handleClickFile = (name) => {
@@ -27,6 +42,8 @@ const About = () => {
       );
       setActiveTab(openTabs.indexOf(name));
     }
+    const content = tabPanels.find((panel) => panel.name === name);
+    setContent(content);
   };
 
   const closeTab = (tabName) => {
@@ -41,16 +58,19 @@ const About = () => {
       <Head>
         <title>Amina Ait | About</title>
       </Head>
-      <Grid container justifyContent="start" sx={{ height: '100%' }}>
+      <Grid
+        container
+        justifyContent="start"
+        sx={{ height: { xs: 'auto', md: '100%' } }}
+      >
         <Grid
           item
           sx={{
             width: {
-              xs: '75%',
+              xs: 'inherit',
               md: '12%',
             },
             borderRight: '2px solid #1E2D3D',
-            height: '47rem',
           }}
         >
           <PerfectScrollbar>
@@ -91,6 +111,46 @@ const About = () => {
                   {/* {openTabs.map((tab, i) => (
                     <FileTabPanel value={i} key={i} content={`mm${i}`} />
                   ))} */}
+                  <Box
+                    sx={{
+                      padding: '2rem',
+                      width: 'calc(100% - 2rem)',
+                    }}
+                  >
+                    {openTabs.map((tab, i) => {
+                      const matched = tabPanels.find(
+                        (panel) => panel.name === tab
+                      );
+                      const content = matched.content.split('\n');
+                      const length = content.length + 2;
+                      return (
+                        <TabPanel
+                          key={i}
+                          value={i}
+                          sx={{
+                            color: '#607B96',
+                          }}
+                        >
+                          {isMobile && (
+                            <Typography
+                              sx={{
+                                color: 'white',
+                                marginBottom: '2rem',
+                                marginTop: 0,
+                              }}
+                            >
+                              {matched.title}
+                            </Typography>
+                          )}
+                          <Typography>{`1. /**`}</Typography>
+                          {content.map((el, index) => (
+                            <p key={index}>{`${index + 2}. * ${el}`}</p>
+                          ))}
+                          <Typography>{`${length}. */`}</Typography>
+                        </TabPanel>
+                      );
+                    })}
+                  </Box>
                 </FileTabs>
               ) : (
                 <Box sx={{ padding: '2rem' }}>

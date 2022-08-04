@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
-import Dropdown from '../common/Dropdown';
-import CustomIcon from '../common/CustomIcon';
-import { selectStack } from '../../content/stack';
+import Dropdown from '../../common/Dropdown';
+import CustomIcon from '../../common/CustomIcon';
+import { selectStack } from '../../../content/stack';
 
 const dummyProjects = [
   {

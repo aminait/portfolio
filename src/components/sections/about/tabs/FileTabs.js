@@ -5,10 +5,11 @@ import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
-import CustomIcon from '../../common/CustomIcon';
+import CustomIcon from '../../../common/CustomIcon';
 import { Stack } from '@mui/material';
 import { Box, Typography } from '@mui/material';
 import ScrollBar from 'react-perfect-scrollbar';
+import { useResponsive } from '../../../../hooks/useResponsive';
 
 const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
   backgroundColor: theme.palette.primary.lighter,
@@ -16,6 +17,7 @@ const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
   alignItems: 'center',
   borderBottom: '2px solid #1E2D3D',
   width: '100%',
+  minHeight: '48px',
 }));
 
 const Tab = styled(TabUnstyled)(({ theme }) => ({
@@ -36,17 +38,15 @@ const Tab = styled(TabUnstyled)(({ theme }) => ({
   },
 }));
 
-const TabPanel = styled(TabPanelUnstyled)(({ theme }) => ({
-  width: '100%',
-  fontSize: '0.875rem',
-  padding: '1rem',
-}));
-
 const Tabs = styled(TabsUnstyled)(({ theme }) => ({
   // backgroundColor: theme.palette.primary.lighter,
-  // display: 'inline-flex',
-  // alignItems: 'center',
-  // borderBottom: '2px solid #1E2D3D',
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'flex-start',
+  // alignItems: 'flex-start',
+  // // alignItems: 'center',
+  // // borderBottom: '2px solid #1E2D3D',
+  // height: '100%',
 }));
 
 export default function FileTabs({
@@ -54,38 +54,41 @@ export default function FileTabs({
   activeTab = 0,
   setActiveTab,
   closeTab,
+  children,
 }) {
+  const { isDesktop } = useResponsive();
+  console.log('tabs', tabs);
   return (
     <>
       <Tabs defaultValue={activeTab} value={activeTab} sx={{ width: 'revert' }}>
-        <ScrollBar>
-          <TabsList>
-            {tabs.map((tab, i) => (
-              <Tab key={i} onClick={() => setActiveTab(i)}>
-                <Stack
-                  display="flex"
-                  direction="row"
-                  justifyContent={'space-between'}
-                >
-                  <Typography sx={{ marginRight: '10px' }}>{tab}</Typography>
-                  <CustomIcon
-                    icon="ri:close-circle-fill"
-                    onClick={() => closeTab(tab)}
-                    sx={{
-                      margin: 'auto',
-                      '&:hover': {
-                        color: 'white',
-                      },
-                    }}
-                  />
-                </Stack>
-              </Tab>
-            ))}
-          </TabsList>
-        </ScrollBar>
-        {tabs.map((tab, i) => (
-          <TabPanel key={i} value={i}>{`smt${i}`}</TabPanel>
-        ))}
+        {isDesktop && (
+          <ScrollBar>
+            <TabsList>
+              {tabs.map((tab, i) => (
+                <Tab key={i} onClick={() => setActiveTab(i)}>
+                  <Stack
+                    display="flex"
+                    direction="row"
+                    justifyContent={'space-between'}
+                  >
+                    <Typography sx={{ marginRight: '10px' }}>{tab}</Typography>
+                    <CustomIcon
+                      icon="ri:close-circle-fill"
+                      onClick={() => closeTab(tab)}
+                      sx={{
+                        margin: 'auto',
+                        '&:hover': {
+                          color: 'white',
+                        },
+                      }}
+                    />
+                  </Stack>
+                </Tab>
+              ))}
+            </TabsList>
+          </ScrollBar>
+        )}
+        {children}
       </Tabs>
     </>
   );
