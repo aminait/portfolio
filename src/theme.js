@@ -58,6 +58,16 @@ const themeOptions = {
 export default function ThemeProvider({ children }) {
   let theme = createTheme(themeOptions);
   theme = responsiveFontSizes(theme);
+  theme.typography.h2 = {
+    fontSize: '3.2rem',
+    fontWeight: '400',
+    // '@media (min-width:600px)': {
+    //   fontSize: '1.5rem',
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   fontSize: '3.2rem',
+    // },
+  };
 
   return (
     <MUIThemeProvider theme={theme}>

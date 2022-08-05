@@ -3,8 +3,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import { Grid, Typography, Box, Slide } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
+import { useResponsive } from '../hooks/useResponsive';
 
 export default function Home() {
+  const { isDesktop } = useResponsive();
   const [fade, setFade] = useState(false);
   const [title, setTitle] = useState('Software Developer');
   const containerRef = useRef(null);
@@ -41,6 +43,7 @@ export default function Home() {
             justify="space-around"
             spacing={8}
             ref={containerRef}
+            sx={{ padding: '2rem' }}
           >
             {/* COLOR BG */}
             <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -75,15 +78,13 @@ export default function Home() {
               <Typography sx={{ fontSize: '1rem', lineHeight: '1rem' }}>
                 Hi all, I am
               </Typography>
-              <Typography variant="h2" sx={{ fontWeight: 400 }}>
-                Amina Ait
-              </Typography>
+              <Typography variant="h2">Amina Ait</Typography>
 
               <Box ref={boxRef}>
                 <Slide in={fade} direction="up" container={boxRef.current}>
                   <Typography
                     variant="h5"
-                    sx={{ color: (theme) => theme.palette.secondary.purple }}
+                    sx={{ color: (theme) => theme.palette.accent.green }}
                   >{`> ${title}`}</Typography>
                 </Slide>
               </Box>
@@ -101,18 +102,29 @@ export default function Home() {
                 }
               }
             >
-              <Typography
-                sx={{ color: (theme) => theme.palette.secondary.main }}
-                // variant="body2"
-              >
-                {'// complete the game to continue'}
-              </Typography>
-              <Typography
-                sx={{ color: (theme) => theme.palette.secondary.main }}
-                // variant="body2"
-              >
-                {'// you can also see it on my Github page'}
-              </Typography>
+              {isDesktop ? (
+                <>
+                  <Typography
+                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                    // variant="body2"
+                  >
+                    {'// complete the game to continue'}
+                  </Typography>
+                  <Typography
+                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                    // variant="body2"
+                  >
+                    {'// you can also see it on my Github page'}
+                  </Typography>
+                </>
+              ) : (
+                <Typography
+                  sx={{ color: (theme) => theme.palette.secondary.main }}
+                  // variant="body2"
+                >
+                  {'// find my profile on Github:'}
+                </Typography>
+              )}
 
               <Box
                 component="div"
@@ -152,6 +164,7 @@ export default function Home() {
         </Grid>
         <Grid item sx={{ display: { xs: 'none', md: 'block' } }}>
           {' '}
+          {/* DESKTOP */}
           <Box
             sx={{
               position: 'absolute',
@@ -160,10 +173,6 @@ export default function Home() {
               top: '15rem',
               width: '20rem',
               height: '12rem',
-              // width: '454px',
-              // height: ' 492px',
-              // left: '1014.08px',
-              // top: '668.47px',
 
               background: '#43D9AD',
               opacity: '0.6',

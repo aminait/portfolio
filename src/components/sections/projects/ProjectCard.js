@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { m } from 'framer-motion';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -50,13 +49,6 @@ export default function ProjectCard({ project, sx }) {
       >
         <CardActionArea>
           <Box
-            component={m.img}
-            whileTap="tap"
-            whileHover="hover"
-            variants={{
-              hover: { scale: 1.02 },
-              tap: { scale: 0.98 },
-            }}
             src={image}
             sx={{
               width: '100%',
