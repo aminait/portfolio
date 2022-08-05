@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import Footer from './Footer';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { styled } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import HorizontalBar from './HorizontalBar';
+import { topNavItems, bottomNavItems } from '../content/navItems';
+import MobileMenu from './MobileMenu';
 
 const BgStyle = styled('main')(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -20,59 +21,45 @@ const MainStyle = styled('div')(({ theme }) => ({
   borderColor: '#1E2D3D',
   borderStyle: 'solid',
   borderWidth: '2px',
-  width: '98%',
+  width: '95%',
   height: '95%',
+  paddingBottom: '0.5rem',
 }));
 
 const MainView = styled('div')(({ theme }) => ({
   height: '87%',
+  [theme.breakpoints.down('md')]: {
+    overflow: 'scroll',
+  },
 }));
 
-const topNavItems = {
-  main: {
-    name: 'amina-ait',
-    link: '/',
-  },
-  items: [
-    { name: '_hello', link: '/' },
-    { name: '_about-me', link: '/about' },
-    { name: '_projects', link: '/projects' },
-  ],
-  rightNavItem: { name: 'contact-me', link: '/contact' },
-};
-
-const bottomNavItems = {
-  main: { name: 'Find me on:', link: '' },
-  items: [
-    { icon: 'fa:linkedin', link: '#', name: 'LinkedIn' },
-    { icon: 'akar-icons:instagram-fill', link: '#', name: 'Instagram' },
-    {
-      icon: 'ant-design:github-outlined',
-      name: '@aminait',
-      link: '/contact',
-    },
-  ],
-};
-
 const MainLayout = ({ children }) => {
-  const [nav, toggleNav] = useState(false);
+  const [menu, setMenu] = useState(false);
+  console.log('MainLayout -> menu', menu);
+
+  const toggleMenu = () => {
+    setMenu((prev) => !prev);
+  };
+
   return (
     <BgStyle>
       <MainStyle>
         <HorizontalBar
-          nav={nav}
-          toggleNav={toggleNav}
+          toggleMenu={toggleMenu}
           isTop={true}
           navItems={topNavItems}
         />
-        <MainView>{children}</MainView>
+        <MainView>
+          {menu ? <MobileMenu setMenu={setMenu} /> : children}
+        </MainView>
         {/* <Footer /> */}
-        <HorizontalBar
-          nav={nav}
-          toggleNav={toggleNav}
-          isTop={false}
-          navItems={bottomNavItems}
-        />
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <HorizontalBar
+            toggleMenu={toggleMenu}
+            isTop={false}
+            navItems={bottomNavItems}
+          />
+        </Box>
       </MainStyle>
     </BgStyle>
   );

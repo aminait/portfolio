@@ -42,6 +42,12 @@ const AccordionSummary = styled((props) => (
   '&:hover': {
     color: 'white',
   },
+  [theme.breakpoints.down('md')]: {
+    backgroundColor: '#1E2D3D',
+    color: 'white',
+    margin: '-0.5rem',
+    borderBottom: `1px solid #011627`,
+  },
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
@@ -59,9 +65,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function Dropdown({
   text = 'professional-info',
   children = 'wee',
-  isFirst,
   sx,
-  isOpen,
+  isOpen = false,
 }) {
   const [expanded, setExpanded] = React.useState(isOpen);
 

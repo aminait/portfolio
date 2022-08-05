@@ -2,13 +2,13 @@ import Head from 'next/head';
 import React, { useState, useCallback } from 'react';
 
 import MainLayout from '../layouts/MainLayout';
-import BindInput from '../components/contact/BindInput';
-import ContactForm from '../components/contact/ContactForm';
+import BindInput from '../components/sections/contact/BindInput';
+import ContactForm from '../components/sections/contact/ContactForm';
 
 import { Grid, Typography } from '@mui/material';
 import Dropdown from '../components/common/Dropdown';
 import CustomIcon from '../components/common/CustomIcon';
-import SuccessState from '../components/contact/SuccessState';
+import SuccessState from '../components/sections/contact/SuccessState';
 
 const contacts = [
   {
@@ -85,19 +85,15 @@ const ContactMe = () => {
       </Head>
 
       <Grid
-        // direction="row"
-        // spacing={4}
         container
         justifyContent="start"
-        sx={{
-          height: '100%',
-        }}
+        sx={{ height: { xs: 'auto', md: '100%' } }}
       >
         <Grid
           item
           sx={{
             width: {
-              xs: '75%',
+              xs: 'inherit',
               md: '12%',
             },
             borderRight: `2px solid #1E2D3D`,
@@ -118,11 +114,18 @@ const ContactMe = () => {
           item
           sx={{
             width: {
-              xs: '75%',
+              xs: 'inherit',
               md: '44%',
             },
-            borderRight: `2px solid #1E2D3D`,
-            paddingTop: submitted ? '20rem' : '5rem',
+            borderRight: {
+              xs: '',
+              md: `2px solid #1E2D3D`,
+            },
+            paddingTop: {
+              xs: '5rem',
+              md: submitted ? '20rem' : '5rem',
+            },
+
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'start',
