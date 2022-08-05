@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import { Grid, Typography, Box, Slide } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
-import Game from '../components/snake-game/game';
 
 export default function Home() {
   const [fade, setFade] = useState(false);
