@@ -85,19 +85,15 @@ const ContactMe = () => {
       </Head>
 
       <Grid
-        // direction="row"
-        // spacing={4}
         container
         justifyContent="start"
-        sx={{
-          height: '100%',
-        }}
+        sx={{ height: { xs: 'auto', md: '100%' } }}
       >
         <Grid
           item
           sx={{
             width: {
-              xs: '75%',
+              xs: 'inherit',
               md: '12%',
             },
             borderRight: `2px solid #1E2D3D`,
@@ -118,11 +114,18 @@ const ContactMe = () => {
           item
           sx={{
             width: {
-              xs: '75%',
+              xs: 'inherit',
               md: '44%',
             },
-            borderRight: `2px solid #1E2D3D`,
-            paddingTop: submitted ? '20rem' : '5rem',
+            borderRight: {
+              xs: '',
+              md: `2px solid #1E2D3D`,
+            },
+            paddingTop: {
+              xs: '5rem',
+              md: submitted ? '20rem' : '5rem',
+            },
+
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'start',

@@ -33,7 +33,7 @@ const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
-  // borderBottom: `2px solid ${theme.palette.lines.light}`,
+  borderBottom: `2px solid ${theme.palette.lines.light}`,
   color: theme.palette.secondary.main,
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
@@ -42,11 +42,12 @@ const AccordionSummary = styled((props) => (
   '&:hover': {
     color: 'white',
   },
-  // TODO add here breakpoint for mobile
-  backgroundColor: '#1E2D3D',
-  color: 'white',
-  margin: '-0.5rem',
-  borderBottom: `1px solid #011627`,
+  [theme.breakpoints.down('md')]: {
+    backgroundColor: '#1E2D3D',
+    color: 'white',
+    margin: '-0.5rem',
+    borderBottom: `1px solid #011627`,
+  },
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
@@ -64,9 +65,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 export default function Dropdown({
   text = 'professional-info',
   children = 'wee',
-  isFirst,
   sx,
-  isOpen,
+  isOpen = false,
 }) {
   const [expanded, setExpanded] = React.useState(isOpen);
 

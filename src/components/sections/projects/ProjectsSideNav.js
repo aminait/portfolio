@@ -11,6 +11,7 @@ import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
 import Dropdown from '../../common/Dropdown';
 import CustomIcon from '../../common/CustomIcon';
 import { selectStack } from '../../../content/stack';
+import { useResponsive } from '../../../hooks/useResponsive';
 
 const dummyProjects = [
   {
@@ -21,6 +22,7 @@ const dummyProjects = [
 ];
 
 const ProjectsSideNav = ({ handleCheck }) => {
+  const { isDesktop } = useResponsive();
   const [checked, setChecked] = React.useState([]);
   console.log('ProjectsSideNav -> checked', checked);
 
@@ -41,7 +43,7 @@ const ProjectsSideNav = ({ handleCheck }) => {
 
   return (
     <>
-      <Dropdown text="projects" isOpen={true}>
+      <Dropdown text="projects" isOpen={isDesktop}>
         <List>
           {selectStack.map((stack, i) => {
             const labelId = `checkbox-list-label-${stack}`;

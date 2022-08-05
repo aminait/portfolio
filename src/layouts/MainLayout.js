@@ -23,10 +23,14 @@ const MainStyle = styled('div')(({ theme }) => ({
   borderWidth: '2px',
   width: '95%',
   height: '95%',
+  paddingBottom: '0.5rem',
 }));
 
 const MainView = styled('div')(({ theme }) => ({
   height: '87%',
+  [theme.breakpoints.down('md')]: {
+    overflow: 'scroll',
+  },
 }));
 
 const MainLayout = ({ children }) => {

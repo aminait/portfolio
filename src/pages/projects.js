@@ -35,7 +35,7 @@ const Projects = () => {
           item
           sx={{
             width: {
-              xs: ' ',
+              xs: 'inherit',
               md: '12%',
             },
             borderRight: '2px solid #1E2D3D',

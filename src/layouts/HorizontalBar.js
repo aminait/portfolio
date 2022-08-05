@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Link from '../components/common/Link';
 import { useRouter } from 'next/router';
 import {
   Box,
@@ -145,22 +145,22 @@ const HorizontalBar = ({ toggleMenu, isTop, navItems }) => {
               >
                 <Link href={item.link} passHref={true}>
                   {item.icon ? (
-                    <Tooltip title={item.name} placement="top">
-                      <CustomIcon
-                        icon={item.icon}
-                        sx={{
-                          width: 15,
-                          height: 15,
-                          color: (theme) => theme.palette.secondary.main,
-                          '&:hover': {
-                            color: 'white',
-                          },
-                          margin: '1rem',
-                          lineHeight: '1rem',
-                        }}
-                      />
-                    </Tooltip>
+                    // <Tooltip title={item.name} placement="top">
+                    <CustomIcon
+                      icon={item.icon}
+                      sx={{
+                        width: 15,
+                        height: 15,
+                        color: (theme) => theme.palette.secondary.main,
+                        '&:hover': {
+                          color: 'white',
+                        },
+                        margin: '1rem',
+                        lineHeight: '1rem',
+                      }}
+                    />
                   ) : (
+                    // </Tooltip>
                     <ListItemText
                       primary={item.name}
                       sx={{
