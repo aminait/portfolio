@@ -30,6 +30,7 @@ const MainView = styled('div')(({ theme }) => ({
   height: '87%',
   [theme.breakpoints.down('md')]: {
     overflow: 'scroll',
+    paddingBottom: '1rem',
   },
 }));
 

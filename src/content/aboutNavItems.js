@@ -21,7 +21,7 @@ const profItems = [
   },
   {
     id: 3,
-    name: 'opensoft-solutions',
+    name: 'opensoft',
     type: 'folder',
     color: 'orange',
     children: [

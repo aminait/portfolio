@@ -14,12 +14,11 @@ export const topNavItems = {
 export const bottomNavItems = {
   main: { name: 'Find me on:', link: '' },
   items: [
-    { icon: 'fa:linkedin', link: '#', name: 'LinkedIn' },
-    { icon: 'akar-icons:instagram-fill', link: '#', name: 'Instagram' },
+    { icon: 'fa:linkedin', link: 'linkedin.com/', name: 'LinkedIn' },
     {
       icon: 'ant-design:github-outlined',
       name: '@aminait',
-      link: '/contact',
+      link: 'github.com/aminait',
     },
   ],
 };

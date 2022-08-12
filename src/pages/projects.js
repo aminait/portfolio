@@ -52,14 +52,14 @@ const Projects = () => {
               // sx={{ padding: '3rem', marginLeft: '5rem' }}
               // alignItems="flex-start"
               // justifyContent="space-between"
-              spacing={2}
+              // spacing={2}
             >
               {projectsData.map((project, id) => (
                 <Grid
                   item
                   key={id}
                   xs={12}
-                  md={6}
+                  md={4}
                   lg={4}
                   sx={{ marginBottom: '3rem' }}
                 >

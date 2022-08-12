@@ -7,14 +7,17 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 
 export default function ProjectCard({ project, sx }) {
-  const { index, image, tags, title, description, repoLink } = project;
+  const { index, image, tags, title, description, liveLink, repoLink } =
+    project;
 
   return (
     <>
       <Box
         component="div"
         display="inline"
-        sx={{ color: (theme) => theme.palette.secondary.purple }}
+        sx={{
+          color: (theme) => theme.palette.secondary.purple,
+        }}
       >
         {`Project ${index} `}
       </Box>
@@ -44,11 +47,11 @@ export default function ProjectCard({ project, sx }) {
             boxShadow:
               '0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1)',
           },
-          ...sx,
+          // ...sx,
         }}
       >
         <CardActionArea>
-          <Box
+          {/* <Box
             src={image}
             sx={{
               width: '100%',
@@ -56,7 +59,8 @@ export default function ProjectCard({ project, sx }) {
               objectFit: 'cover',
               // height: '100%',
             }}
-          />
+          /> */}
+          <CardMedia component="img" height="140" image={image} />
         </CardActionArea>
         <CardContent
           sx={{
@@ -75,6 +79,8 @@ export default function ProjectCard({ project, sx }) {
                 color: 'white',
                 textTransform: 'none',
               }}
+              href={liveLink}
+              target="_blank"
             >
               view-project
             </Button>

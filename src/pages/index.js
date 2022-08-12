@@ -5,14 +5,13 @@ import { Grid, Typography, Box, Slide } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
 import { useResponsive } from '../hooks/useResponsive';
 
+const titles = ['Software Developer', 'Computer Engineer'];
 export default function Home() {
   const { isDesktop } = useResponsive();
   const [fade, setFade] = useState(false);
-  const [title, setTitle] = useState('Software Developer');
+  const [title, setTitle] = useState(titles[0]);
   const containerRef = useRef(null);
   const boxRef = useRef(null);
-
-  const titles = ['Software Developer', 'Computer Engineer'];
 
   useEffect(() => {
     setFade(true);
@@ -22,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Amina Ait | Software Dev & Computer Engineer</title>
+        <title>Amina Ait | Software & Computer Engineer</title>
       </Head>
 
       <Grid

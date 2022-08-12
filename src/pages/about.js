@@ -144,9 +144,14 @@ const About = () => {
                           )}
                           <Typography>{`1. /**`}</Typography>
                           {content.map((el, index) => (
-                            <p key={index}>{`${index + 2}. * ${el}`}</p>
+                            <Typography
+                              sx={{ margin: 0, padding: 0 }}
+                              key={index}
+                            >{`${index + 2}. * ${el}`}</Typography>
                           ))}
-                          <Typography>{`${length}. */`}</Typography>
+                          <Typography
+                            sx={{ margin: 0, padding: 0 }}
+                          >{`${length}. */`}</Typography>
                         </TabPanel>
                       );
                     })}

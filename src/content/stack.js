@@ -23,4 +23,8 @@ export const selectStack = [
     name: '.NET',
     icon: 'simple-icons:dotnet',
   },
+  {
+    name: 'Next.js',
+    icon: 'file-icons:nextjs',
+  },
 ];

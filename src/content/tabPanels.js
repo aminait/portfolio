@@ -9,7 +9,7 @@ export const tabPanels = [
     name: 'software-engineer',
     title: '// 333about-me',
     content:
-      '2 Here is some information about \n this and so I will do this \n and yes',
+      '------------------------------------- \n Software Developer @ Gazal App \n 18/08/21 - Current \n------------------------------------- \n --> Tasks \n --> Tasks',
   },
   {
     name: 'backend-developer',
