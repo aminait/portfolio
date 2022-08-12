@@ -7,7 +7,7 @@ export const projects = [
     title: 'chat-app',
     description: 'Slack clone built using React and Firebase Realtime Database',
     liveLink: 'https://chisel-5b7ff.web.app/',
-    repoLink: 'https://chisel-5b7ff.web.app/',
+    repoLink: 'https://github.com/aminait/react-firebase-app',
   },
   {
     index: 2,
@@ -28,16 +28,16 @@ export const projects = [
     title: 'portfolio',
     description: 'Portfolio site to display list of projects and resume',
     liveLink: 'https://amina-ait-portfolio.vercel.app/',
-    repoLink: 'https://amina-ait-portfolio.vercel.app/',
+    repoLink: 'https://github.com/aminait/portfolio',
   },
   {
     index: 4,
     image:
       'https://cdn.dribbble.com/users/463734/screenshots/2016799/generic-error_shot.png?compress=1&resize=400x300&vertical=top',
-    tags: ['.net', 'angular'],
-    title: 'job-board-app',
-    description: 'Job Board portal made using .NET framework and Angular',
-    repoLink: 'github.com/aminait',
-    liveLink: 'github.com/aminait',
+    tags: ['flask', 'react'],
+    title: 'python-blockchain',
+    description: '',
+    repoLink: 'https://github.com/aminait/python-blockchain',
+    liveLink: '',
   },
 ];
