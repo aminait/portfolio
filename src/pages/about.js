@@ -147,7 +147,9 @@ const About = () => {
                             <Typography
                               sx={{ margin: 0, padding: 0 }}
                               key={index}
-                            >{`${index + 2}. * ${el}`}</Typography>
+                            >
+                              {`${index + 2}. *`} {el}
+                            </Typography>
                           ))}
                           <Typography
                             sx={{ margin: 0, padding: 0 }}

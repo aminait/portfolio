@@ -5,7 +5,7 @@ import MainLayout from '../layouts/MainLayout';
 import BindInput from '../components/sections/contact/BindInput';
 import ContactForm from '../components/sections/contact/ContactForm';
 
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, List, ListItem } from '@mui/material';
 import Dropdown from '../components/common/Dropdown';
 import CustomIcon from '../components/common/CustomIcon';
 import SuccessState from '../components/sections/contact/SuccessState';
@@ -100,14 +100,21 @@ const ContactMe = () => {
           }}
         >
           <Dropdown text="contacts">
-            {contacts.map((contact, i) => (
-              <div key={i}>
-                <Typography variant="p">
-                  <CustomIcon icon={contact.icon} />
-                  {contact.name}
-                </Typography>
-              </div>
-            ))}
+            <List>
+              {contacts.map((contact, i) => (
+                // <div key={i}>
+                <ListItem key={i}>
+                  <Typography variant="p">
+                    <CustomIcon
+                      icon={contact.icon}
+                      sx={{ marginRight: '10px' }}
+                    />
+                    {contact.name}
+                  </Typography>
+                </ListItem>
+                // </div>
+              ))}
+            </List>
           </Dropdown>
         </Grid>
         <Grid

@@ -1,5 +1,12 @@
 import React from 'react';
-import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Tooltip,
+  Box,
+} from '@mui/material';
 import Dropdown from '../../common/Dropdown';
 import CustomIcon from '../../common/CustomIcon';
 import SecondaryDropdown from '../../common/SecondaryDropdown';
@@ -9,88 +16,90 @@ import { useResponsive } from '../../../hooks/useResponsive';
 const AboutSideNav = ({ handleClickFile }) => {
   const { isDesktop } = useResponsive();
   return (
-    <>
-      {navItems.map((item, i) => {
-        return (
-          <Dropdown key={i} text={item.text}>
-            <List>
-              {item.subItems.map((subItem, i) => {
-                {
-                  const listId = `checkbox-list-label-${subItem}`;
+    <Tooltip placement="top" title="File Explorer">
+      <Box>
+        {navItems.map((item, i) => {
+          return (
+            <Dropdown key={i} text={item.text}>
+              <List>
+                {item.subItems.map((subItem, i) => {
+                  {
+                    const listId = `checkbox-list-label-${subItem}`;
 
-                  if (subItem.type === 'folder') {
-                    const text = (
-                      <>
-                        <CustomIcon
-                          icon={'ri:folder-3-fill'}
-                          sx={{
-                            marginRight: '5px',
-                            color: (theme) =>
-                              `${theme.palette.accent[subItem.color]}`,
-                          }}
-                        />
-                        {subItem.name}
-                      </>
-                    );
+                    if (subItem.type === 'folder') {
+                      const text = (
+                        <>
+                          <CustomIcon
+                            icon={'ri:folder-3-fill'}
+                            sx={{
+                              marginRight: '5px',
+                              color: (theme) =>
+                                `${theme.palette.accent[subItem.color]}`,
+                            }}
+                          />
+                          {subItem.name}
+                        </>
+                      );
+                      return (
+                        <SecondaryDropdown key={i} text={text}>
+                          {subItem.children.map((child) => (
+                            <ListItem key={child.name} disablePadding>
+                              <ListItemButton
+                                role={undefined}
+                                onClick={() => handleClickFile(child.name)}
+                                disableRipple
+                              >
+                                <CustomIcon
+                                  icon={'ri:file-info-line'}
+                                  sx={{ marginRight: '5px' }}
+                                />
+
+                                <ListItemText
+                                  id={listId}
+                                  primary={child.name}
+                                  sx={{
+                                    '&.active .MuiTypography-root': {
+                                      fontWeight: 'bold',
+                                    },
+                                  }}
+                                />
+                              </ListItemButton>
+                            </ListItem>
+                          ))}
+                        </SecondaryDropdown>
+                      );
+                    }
                     return (
-                      <SecondaryDropdown key={i} text={text}>
-                        {subItem.children.map((child) => (
-                          <ListItem key={child.name} disablePadding>
-                            <ListItemButton
-                              role={undefined}
-                              onClick={() => handleClickFile(child.name)}
-                              disableRipple
-                            >
-                              <CustomIcon
-                                icon={'ri:file-info-line'}
-                                sx={{ marginRight: '5px' }}
-                              />
-
-                              <ListItemText
-                                id={listId}
-                                primary={child.name}
-                                sx={{
-                                  '&.active .MuiTypography-root': {
-                                    fontWeight: 'bold',
-                                  },
-                                }}
-                              />
-                            </ListItemButton>
-                          </ListItem>
-                        ))}
-                      </SecondaryDropdown>
+                      <ListItem key={subItem.name} disablePadding>
+                        <ListItemButton
+                          role={undefined}
+                          onClick={() => handleClickFile(subItem.name)}
+                          disableRipple
+                        >
+                          <CustomIcon
+                            icon={'ri:file-info-line'}
+                            sx={{ marginLeft: '20px', marginRight: '5px' }}
+                          />
+                          <ListItemText
+                            id={listId}
+                            primary={subItem.name}
+                            sx={{
+                              '&.active .MuiTypography-root': {
+                                fontWeight: 'bold',
+                              },
+                            }}
+                          />
+                        </ListItemButton>
+                      </ListItem>
                     );
                   }
-                  return (
-                    <ListItem key={subItem.name} disablePadding>
-                      <ListItemButton
-                        role={undefined}
-                        onClick={() => handleClickFile(subItem.name)}
-                        disableRipple
-                      >
-                        <CustomIcon
-                          icon={'ri:file-info-line'}
-                          sx={{ marginLeft: '20px', marginRight: '5px' }}
-                        />
-                        <ListItemText
-                          id={listId}
-                          primary={subItem.name}
-                          sx={{
-                            '&.active .MuiTypography-root': {
-                              fontWeight: 'bold',
-                            },
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                  );
-                }
-              })}
-            </List>
-          </Dropdown>
-        );
-      })}
-    </>
+                })}
+              </List>
+            </Dropdown>
+          );
+        })}
+      </Box>
+    </Tooltip>
   );
 };
 

@@ -40,4 +40,41 @@ export const projects = [
     repoLink: 'https://github.com/aminait/python-blockchain',
     liveLink: '',
   },
+  // {
+  //   index: 5,
+  //   image:
+  //     'https://cdn.dribbble.com/users/463734/screenshots/2016799/generic-error_shot.png?compress=1&resize=400x300&vertical=top',
+  //   tags: ['flask', 'react'],
+  //   title: 'python-blockchain',
+  //   description: '',
+  //   repoLink: 'https://github.com/aminait/python-blockchain',
+  //   liveLink: '',
+  // },
+];
+
+// TODO
+export const templates = [
+  {
+    index: 1,
+    tags: ['express', 'REST', 'nodejs', 'firebase'],
+    title: 'express-rest-template',
+    description:
+      'Server code base template for REST API using express and firebase including auth, unit tests and commit hooks',
+    repoLink: 'https://github.com/aminait/express-rest-template',
+  },
+  {
+    index: 2,
+    tags: ['next.js', 'tailwind', 'redux'],
+    title: 'nextjs-tailwind-redux-template',
+    description: 'Client code base template using tailwind css and nextjs',
+    repoLink: 'https://github.com/aminait/nextjs-tailwind-template',
+  },
+  {
+    index: 3,
+    tags: ['express', 'graphQL', 'nodejs', 'mongodb', 'react'],
+    title: 'mern-gql-mui-template',
+    description:
+      'Full stack code base using MERN stack, with a GraphQL backend and Material UI frontend',
+    repoLink: 'https://github.com/aminait/mern-gql-mui-template',
+  },
 ];

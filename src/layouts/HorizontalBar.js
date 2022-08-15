@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from '../components/common/Link';
 import { useRouter } from 'next/router';
 import {
@@ -13,7 +13,7 @@ import {
 import CustomIcon from '../components/common/CustomIcon';
 import { useResponsive } from '../hooks/useResponsive';
 import { Grid } from '@mui/material';
-import { topNavItems } from '../content/navItems';
+import { topNavItems, bottomNavItems } from '../content/navItems';
 
 const activeStyles = {
   borderBottom: '0px',
@@ -34,15 +34,25 @@ const listItemStyles = {
   },
 };
 
-const HorizontalBar = ({ toggleMenu, isTop, navItems }) => {
+const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
   const path = useRouter().pathname;
-  const [closeMenu, setCloseMenu] = useState(false);
+
   const { isMobile } = useResponsive();
 
-  const toggleButton = () => {
-    toggleMenu();
-    setCloseMenu((prev) => !prev);
-  };
+  // const toggleMenu = () => {
+  //   toggleMenu();
+  //   setCloseMenu((prev) => !prev);
+  // };
+
+  // useEffect(() => {
+  //   toggleMenu();
+  //   setCloseMenu(false);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [path]);
+
+  useEffect(() => {
+    console.log('enterrrr');
+  }, []);
 
   return (
     <>
@@ -102,13 +112,13 @@ const HorizontalBar = ({ toggleMenu, isTop, navItems }) => {
             <CustomIcon
               icon="codicon:chrome-close"
               sx={{ color: '#607B96' }}
-              onClick={toggleButton}
+              onClick={toggleMenu}
             />
           ) : (
             <CustomIcon
               icon={'charm:menu-hamburger'}
               sx={{ color: '#607B96' }}
-              onClick={toggleButton}
+              onClick={toggleMenu}
             />
           )}
         </Grid>
@@ -176,7 +186,7 @@ const HorizontalBar = ({ toggleMenu, isTop, navItems }) => {
           </List>
         </Grid>
       </Grid>
-      {isMobile && path !== '/' && (
+      {isMobile && path !== '/' && !closeMenu && (
         <Grid
           sx={{
             display: { xs: 'flex', md: 'none' },
@@ -188,6 +198,46 @@ const HorizontalBar = ({ toggleMenu, isTop, navItems }) => {
           </Typography>
         </Grid>
       )}
+      {/* {isMobile && path !== '/' && (
+        <List
+          component={Stack}
+          direction="row"
+          sx={{
+            bottom: '10px',
+            margin: '5px',
+            position: 'absolute',
+            paddingTop: '5rem',
+            // borderTop: '2px solid #1E2D3D',
+            // width: '100%',
+          }}
+        >
+          {bottomNavItems.items.map((item, i) => (
+            <ListItem
+              key={item.name}
+              disablePadding
+              // sx={{
+              //   borderRight: '2px solid #1E2D3D',
+              // }}
+            >
+              <Link href={item.link} passHref={true}>
+                <CustomIcon
+                  icon={item.icon}
+                  sx={{
+                    width: 15,
+                    height: 15,
+                    color: (theme) => theme.palette.secondary.main,
+                    '&:hover': {
+                      color: 'white',
+                    },
+                    margin: '1rem',
+                    lineHeight: '1rem',
+                  }}
+                />
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+      )} */}
     </>
   );
 };

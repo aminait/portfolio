@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from '../components/common/Link';
 import HorizontalBar from './HorizontalBar';
 import { topNavItems, bottomNavItems } from '../content/navItems';
@@ -9,26 +9,33 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 
-const MobileMenu = ({ setMenu }) => {
-  return (
+const MobileMenu = ({ toggleMenu }) => {
+  const router = useRouter();
+  const [show, setShow] = useState(true);
+  console.log('MobileMenu -> show', show);
+  return show ? (
     <Stack direction="column" display="flex" justifyContent="space-between">
       <List disablePadding>
         {topNavItems.items.map((item) => (
-          <Link
+          <ListItem
             key={item.name}
-            href={item.link}
-            passHref={true}
-            onClick={() => setMenu(false)}
+            disablePadding
+            sx={{ borderBottom: '2px solid #1E2D3D' }}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleMenu();
+              router.push(item.link);
+            }}
           >
-            <ListItem disablePadding sx={{ borderBottom: '2px solid #1E2D3D' }}>
-              <ListItemText
-                id={item.name}
-                primary={item.name}
-                sx={{ margin: '1rem' }}
-              />
-            </ListItem>
-          </Link>
+            <ListItemText
+              id={item.name}
+              primary={item.name}
+              sx={{ margin: '1rem' }}
+            />
+          </ListItem>
+          // </Link>
         ))}
       </List>
       {/* TODO Add footer */}
@@ -49,6 +56,8 @@ const MobileMenu = ({ setMenu }) => {
         </ListItem>
       </Link> */}
     </Stack>
+  ) : (
+    ''
   );
 };
 

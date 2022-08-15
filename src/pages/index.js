@@ -9,6 +9,7 @@ const titles = ['Software Developer', 'Computer Engineer'];
 export default function Home() {
   const { isDesktop } = useResponsive();
   const [fade, setFade] = useState(false);
+  const [transition, setTransition] = useState(true);
   const [title, setTitle] = useState(titles[0]);
   const containerRef = useRef(null);
   const boxRef = useRef(null);
@@ -16,6 +17,16 @@ export default function Home() {
   useEffect(() => {
     setFade(true);
   }, []);
+
+  // const rotateTitles = () => {
+  //   if (!transition) {
+  //     setTitle(titles[1])
+  //     setFade(true)
+  //     setTransition(true)
+  //   } else {
+
+  //   }
+  // };
 
   // TODO - make font smaller
   return (
@@ -79,14 +90,16 @@ export default function Home() {
               </Typography>
               <Typography variant="h2">Amina Ait</Typography>
 
-              <Box ref={boxRef}>
-                <Slide in={fade} direction="up" container={boxRef.current}>
-                  <Typography
-                    variant="h5"
-                    sx={{ color: (theme) => theme.palette.accent.green }}
-                  >{`> ${title}`}</Typography>
-                </Slide>
-              </Box>
+              {transition && (
+                <Box ref={boxRef}>
+                  <Slide in={fade} direction="up" container={boxRef.current}>
+                    <Typography
+                      variant="h5"
+                      sx={{ color: (theme) => theme.palette.accent.green }}
+                    >{`> ${title}`}</Typography>
+                  </Slide>
+                </Box>
+              )}
             </Grid>
 
             <Grid

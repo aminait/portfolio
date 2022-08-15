@@ -23,7 +23,7 @@ const MainStyle = styled('div')(({ theme }) => ({
   borderWidth: '2px',
   width: '95%',
   height: '95%',
-  paddingBottom: '0.5rem',
+  paddingBottom: '1rem',
 }));
 
 const MainView = styled('div')(({ theme }) => ({
@@ -36,11 +36,19 @@ const MainView = styled('div')(({ theme }) => ({
 
 const MainLayout = ({ children }) => {
   const [menu, setMenu] = useState(false);
+  const [closeMenu, setCloseMenu] = useState(false);
   console.log('MainLayout -> menu', menu);
 
   const toggleMenu = () => {
+    console.log('555555555555');
     setMenu((prev) => !prev);
+    setCloseMenu((prev) => !prev);
   };
+
+  // const toggleMenu = () => {
+  //   toggleMenu();
+  //   setCloseMenu((prev) => !prev);
+  // };
 
   return (
     <BgStyle>
@@ -49,9 +57,11 @@ const MainLayout = ({ children }) => {
           toggleMenu={toggleMenu}
           isTop={true}
           navItems={topNavItems}
+          closeMenu={closeMenu}
+          setCloseMenu={setCloseMenu}
         />
         <MainView>
-          {menu ? <MobileMenu setMenu={setMenu} /> : children}
+          {menu ? <MobileMenu toggleMenu={toggleMenu} /> : children}
         </MainView>
         {/* <Footer /> */}
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>

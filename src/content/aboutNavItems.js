@@ -4,7 +4,7 @@ const profItems = [
     name: 'gazal',
     type: 'folder',
     color: 'green',
-    children: [{ id: 7, name: 'software-engineer', type: 'file' }],
+    children: [{ id: 7, name: 'sw-developer', type: 'file' }],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const profItems = [
     children: [
       {
         id: 9,
-        name: 'software-intern',
+        name: 'sw-eng-intern',
         type: 'file',
       },
     ],
@@ -51,11 +51,11 @@ const personalItems = [
         name: 'university',
         type: 'file',
       },
-      {
-        id: 11,
-        name: 'highschool',
-        type: 'file',
-      },
+      // {
+      //   id: 11,
+      //   name: 'highschool',
+      //   type: 'file',
+      // },
     ],
   },
   {
