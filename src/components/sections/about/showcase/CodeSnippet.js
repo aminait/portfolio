@@ -14,6 +14,32 @@ import CustomIcon from '../../../common/CustomIcon';
 
 const CodeSnippet = ({ codeSnippet }) => {
   const { code, timestamp, starCount, details } = codeSnippet;
+  function timeSince(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+
+    const interval = seconds / 31536000;
+
+    if (interval > 1) {
+      return Math.floor(interval) + ` year${interval === 1 ? 's' : ''}`;
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + ' months';
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + ' days';
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + ' hours';
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + ' minutes';
+    }
+    return Math.floor(seconds) + ' seconds';
+  }
   const boxRef = useRef();
   const [detailsView, setDetailsView] = useState(false);
   const toggleDetailsView = () => {
@@ -35,7 +61,7 @@ const CodeSnippet = ({ codeSnippet }) => {
               sx={{ color: (theme) => theme.palette.secondary.main }}
               variant="caption"
             >
-              {`Created ${timestamp} ago`}
+              {`Created ${timeSince(new Date(timestamp))} ago`}
             </Typography>
           </Stack>
         </Stack>
