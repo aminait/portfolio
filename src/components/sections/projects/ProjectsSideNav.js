@@ -22,9 +22,11 @@ const dummyProjects = [
 ];
 
 const ProjectsSideNav = ({ handleCheck }) => {
-  const { isDesktop } = useResponsive();
+  const { isDesktop, isMobile } = useResponsive();
+  console.log('ProjectsSideNav -> isDesktop', isDesktop);
   const [checked, setChecked] = React.useState([]);
   console.log('ProjectsSideNav -> checked', checked);
+  const [open, setOpen] = React.useState(true);
 
   const handleToggle = (value) => () => {
     console.log('handleToggle -> value', value);
@@ -38,12 +40,13 @@ const ProjectsSideNav = ({ handleCheck }) => {
     }
 
     setChecked(newChecked);
+    setOpen((prev) => !prev);
     handleCheck(newChecked);
   };
 
   return (
     <>
-      <Dropdown text="projects" isOpen={isDesktop}>
+      <Dropdown text="projects" isOpen={Boolean(open)}>
         <List>
           {selectStack.map((stack, i) => {
             const labelId = `checkbox-list-label-${stack}`;

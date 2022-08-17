@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { CodeBlock, anOldHope } from 'react-code-blocks';
 
 import { Box, Grid, Typography } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
@@ -142,18 +143,22 @@ const About = () => {
                               {matched.title}
                             </Typography>
                           )}
-                          <Typography>{`1. /**`}</Typography>
-                          {content.map((el, index) => (
-                            <Typography
-                              sx={{ margin: 0, padding: 0 }}
-                              key={index}
-                            >
-                              {`${index + 2}. *`} {el}
-                            </Typography>
-                          ))}
-                          <Typography
-                            sx={{ margin: 0, padding: 0 }}
-                          >{`${length}. */`}</Typography>
+
+                          <CodeBlock
+                            text={matched.content}
+                            language={'json'}
+                            showLineNumbers={true}
+                            theme={anOldHope}
+                            wrapLongLines
+                            codeBlock
+                            customStyle={{
+                              background: 'none',
+                              overflowWrap: 'break-word',
+                            }}
+                            codeBlockStyle={{
+                              color: 'green',
+                            }}
+                          />
                         </TabPanel>
                       );
                     })}

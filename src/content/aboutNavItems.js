@@ -58,19 +58,19 @@ const personalItems = [
       // },
     ],
   },
-  {
-    id: 6,
-    name: 'interests',
-    type: 'folder',
-    color: 'green',
-    children: [
-      {
-        id: 12,
-        name: 'robotics',
-        type: 'file',
-      },
-    ],
-  },
+  // {
+  //   id: 6,
+  //   name: 'interests',
+  //   type: 'folder',
+  //   color: 'green',
+  //   children: [
+  //     {
+  //       id: 12,
+  //       name: 'robotics',
+  //       type: 'file',
+  //     },
+  //   ],
+  // },
 ];
 
 export const navItems = [

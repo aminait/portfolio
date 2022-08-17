@@ -125,6 +125,8 @@ const CodeSnippet = ({ codeSnippet }) => {
           codeBlock
           customStyle={{
             background: 'none',
+            // height: '200px',
+            // overflowY: 'scroll',
           }}
         />
       </Card>
