@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 
 import MainLayout from '../layouts/MainLayout';
 import ProjectsSideNav from '../components/sections/projects/ProjectsSideNav';
@@ -10,16 +11,20 @@ import { projects } from '../content/projects';
 
 const Projects = () => {
   const [projectsData, setProjectsData] = useState(projects);
+  const [loading, setLoading] = useState(false);
   const emptyState = ['/**', '* No projects found', '*/'];
 
   const handleCheck = (checkedItems) => {
+    setLoading(true);
     const filteredProjects = projects.filter((project) =>
       checkedItems.every((item) =>
         project.tags.includes(item.name.toLowerCase())
       )
     );
-
-    setProjectsData(filteredProjects);
+    setTimeout(() => {
+      setProjectsData(filteredProjects);
+      setLoading(false);
+    }, 20);
   };
   return (
     <>
@@ -28,6 +33,8 @@ const Projects = () => {
       </Head>
       <Grid
         container
+        display="flex"
+        direction="row"
         justifyContent="start"
         sx={{ height: { xs: 'auto', md: '100%' } }}
       >
@@ -44,32 +51,67 @@ const Projects = () => {
           <ProjectsSideNav handleCheck={handleCheck} />
         </Grid>
         <Grid item sx={{ padding: '3rem' }}>
-          {projectsData.length ? (
-            <Grid
-              container
-              direction="row"
-              display="flex"
-              // sx={{ padding: '3rem', marginLeft: '5rem' }}
-              // alignItems="flex-start"
-              // justifyContent="space-between"
-              // spacing={2}
-            >
-              {projectsData.map((project, id) => (
+          <AnimatePresence key="projects-list">
+            {!loading ? (
+              projectsData.length ? (
+                // <LayoutGroup>
                 <Grid
-                  item
-                  key={id}
-                  xs={12}
-                  md={4}
-                  lg={4}
-                  sx={{ marginBottom: '3rem' }}
+                  container
+                  direction="row"
+                  display="flex"
+                  // sx={{ padding: '3rem', marginLeft: '5rem' }}
+                  // alignItems="flex-start"
+                  justifyContent="space-between"
+                  spacing={2}
+                  component={motion.ul}
+                  sx={{ listStyle: 'none' }}
+                  variants={{
+                    hidden: { opacity: 1 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        delay: 1,
+                        staggerChildren: 0.05,
+                      },
+                    },
+                  }}
+                  initial="hidden"
+                  animate="visible"
                 >
-                  <ProjectCard project={project} />
+                  {projectsData.map((project, id) => (
+                    <Grid
+                      item
+                      key={id}
+                      xs={12}
+                      md={4}
+                      lg={4}
+                      sx={{ marginBottom: '3rem' }}
+                    >
+                      {/* <motion.li layout initial="initial" whileHover="hover"> */}
+                      <motion.li
+                        key={id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        variants={{
+                          hidden: { opacity: 0, y: 50 },
+                          visible: { opacity: 1, y: 0 },
+                        }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.li>
+                      {/* </motion.li> */}
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          ) : (
-            <EmptyState lines={emptyState} />
-          )}
+              ) : (
+                // </LayoutGroup>
+                <EmptyState lines={emptyState} />
+              )
+            ) : (
+              <p></p>
+            )}
+          </AnimatePresence>
           {/* <EmptyState /> */}
         </Grid>
       </Grid>

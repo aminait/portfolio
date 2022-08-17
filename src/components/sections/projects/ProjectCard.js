@@ -15,22 +15,23 @@ export default function ProjectCard({ project, sx }) {
     <>
       <Box
         component="div"
-        display="inline"
         sx={{
           color: (theme) => theme.palette.secondary.purple,
+          display: 'inline',
         }}
       >
         {`Project ${index} `}
+        <Typography
+          component="div"
+          sx={{
+            color: (theme) => theme.palette.secondary.main,
+            display: 'inline',
+          }}
+        >
+          {`// _${title}`}
+        </Typography>
       </Box>
-      <Box
-        component="div"
-        display="inline"
-        sx={{
-          color: (theme) => theme.palette.secondary.main,
-        }}
-      >
-        {`// _${title}`}
-      </Box>
+
       <Box
         component="a"
         href={liveLink || repoLink}
@@ -48,7 +49,7 @@ export default function ProjectCard({ project, sx }) {
             borderWidth: '2px',
             transition: 'transform 0.3s ease-in-out',
             '&:hover': {
-              transform: 'scale3d(1.05, 1.05, 1)',
+              transform: 'scale3d(1.02, 1.02, 1)',
               boxShadow:
                 '0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1)',
             },

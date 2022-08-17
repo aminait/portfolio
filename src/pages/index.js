@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Head from 'next/head';
 import { Grid, Typography, Box, Slide } from '@mui/material';
@@ -10,24 +11,45 @@ export default function Home() {
   const { isDesktop } = useResponsive();
   const [fade, setFade] = useState(false);
   const [transition, setTransition] = useState(true);
-  const [title, setTitle] = useState(titles[0]);
+  // const [title, setTitle] = useState(titles[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
   const boxRef = useRef(null);
+
+  const sentence = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.5,
+        staggerChildren: 0.07,
+      },
+    },
+  };
+
+  const letter = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   useEffect(() => {
     setFade(true);
   }, []);
 
-  // const rotateTitles = () => {
-  //   if (!transition) {
-  //     setTitle(titles[1])
-  //     setFade(true)
-  //     setTransition(true)
-  //   } else {
+  const line1 = 'Hi all, I am';
+  const line2 = 'Amina Ait';
 
-  //   }
-  // };
-
+  const onComplete = () => {
+    setFade(false);
+    setTimeout(() => {
+      if (currentIndex === titles.length - 1) {
+        setCurrentIndex(0);
+      } else {
+        setCurrentIndex((prev) => prev + 1);
+      }
+      setFade(true);
+    }, 2500);
+  };
   // TODO - make font smaller
   return (
     <>
@@ -57,40 +79,100 @@ export default function Home() {
           >
             {/* COLOR BG */}
             <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  left: '1rem',
-                  top: '15rem',
-                  width: '11rem',
-                  height: '12rem',
-                  background: '#43D9AD',
-                  opacity: '0.6',
-                  filter: 'blur(90px)',
-                  // transform: 'rotate(13.51deg)',
-                }}
-              ></Box>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: '15rem',
-                  right: '1rem',
-                  width: '11rem',
-                  height: '12rem',
-                  background: ' #4D5BCE',
-                  opacity: '0.6',
-                  filter: 'blur(90px)',
-                  // transform: 'rotate(-94.3deg)',
-                }}
-              ></Box>
+              <AnimatePresence key={'grid-color-bg-mobile'}>
+                <motion.div
+                  key={1}
+                  initial={{ opacity: 0.6, x: 100, y: 20 }}
+                  animate={{ opacity: 0.4, x: 0, y: 100 }}
+                  exit={{ opacity: 0, x: 20, y: 0 }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                  style={{
+                    position: 'absolute',
+                    // left: '1rem',
+                    // top: '15rem',
+                    width: '11rem',
+                    height: '12rem',
+                    background: '#43D9AD',
+                    opacity: '0.6',
+                    filter: 'blur(90px)',
+                  }}
+                />
+                <motion.div
+                  key={2}
+                  initial={{ opacity: 0.6 }}
+                  animate={{ opacity: 0.4 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '15rem',
+                    right: '1rem',
+                    width: '11rem',
+                    height: '12rem',
+                    background: ' #4D5BCE',
+                    opacity: '0.6',
+                    filter: 'blur(90px)',
+                  }}
+                />
+              </AnimatePresence>
             </Grid>
             <Grid item>
-              <Typography sx={{ fontSize: '1rem', lineHeight: '1rem' }}>
-                Hi all, I am
-              </Typography>
-              <Typography variant="h2">Amina Ait</Typography>
+              {/* <motion.div
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1 }}
+              > */}
+              <Typography>Hi all, I am</Typography>
+              {/* </motion.div> */}
+              <AnimatePresence key="second-title">
+                <motion.h2
+                  variants={sentence}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <Typography variant="h2">
+                    {line2.split('').map((char, index) => {
+                      return (
+                        <motion.span key={char + '-' + index} variants={letter}>
+                          {char}
+                        </motion.span>
+                      );
+                    })}
+                  </Typography>
+                </motion.h2>
+              </AnimatePresence>
+              <AnimatePresence key="job-title">
+                <Typography
+                  variant="h5"
+                  sx={{ color: (theme) => theme.palette.accent.green }}
+                >
+                  {fade ? (
+                    <motion.div
+                      // variants={sentence}
+                      key={titles[currentIndex]}
+                      onAnimationComplete={onComplete}
+                      initial={{ y: 10, opacity: 0.1 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {titles[currentIndex]}
+                    </motion.div>
+                  ) : (
+                    titles[currentIndex]
+                  )}
+                </Typography>
+              </AnimatePresence>
 
-              {transition && (
+              {/* {transition && (
                 <Box ref={boxRef}>
                   <Slide in={fade} direction="up" container={boxRef.current}>
                     <Typography
@@ -99,7 +181,7 @@ export default function Home() {
                     >{`> ${title}`}</Typography>
                   </Slide>
                 </Box>
-              )}
+              )} */}
             </Grid>
 
             <Grid
@@ -177,35 +259,50 @@ export default function Home() {
         <Grid item sx={{ display: { xs: 'none', md: 'block' } }}>
           {' '}
           {/* DESKTOP */}
-          <Box
-            sx={{
-              position: 'absolute',
-              right: '26rem',
-              left: 'unset',
-              top: '15rem',
-              width: '20rem',
-              height: '12rem',
+          <AnimatePresence key="grid-color-bg-desktop">
+            <motion.div
+              key={3}
+              initial={{ opacity: 0.6, x: 20, y: 20 }}
+              animate={{ opacity: 0.4, x: 100, y: 0 }}
+              exit={{ opacity: 0, x: 20, y: 0 }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+              style={{
+                position: 'absolute',
+                right: '26rem',
+                left: 'unset',
+                top: '15rem',
+                width: '20rem',
+                height: '12rem',
+                background: '#43D9AD',
+                filter: 'blur(140px)',
+                transform: 'rotate(-94.3deg)',
+              }}
+            />
+            <motion.div
+              key={4}
+              initial={{ opacity: 0.3 }}
+              animate={{ opacity: 0.6 }}
+              transition={{
+                duration: 1,
+              }}
+              style={{
+                position: 'absolute',
+                bottom: '10rem',
+                right: '15rem',
+                width: '20rem',
+                height: '12rem',
 
-              background: '#43D9AD',
-              opacity: '0.6',
-              filter: 'blur(140px)',
-              transform: 'rotate(-94.3deg)',
-            }}
-          ></Box>
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: '10rem',
-              right: '15rem',
-              width: '20rem',
-              height: '12rem',
-
-              background: ' #4D5BCE',
-              opacity: '0.6',
-              filter: 'blur(140px)',
-              transform: 'rotate(13.51deg)',
-            }}
-          ></Box>
+                background: ' #4D5BCE',
+                opacity: '0.6',
+                filter: 'blur(140px)',
+                transform: 'rotate(13.51deg)',
+              }}
+            />
+          </AnimatePresence>
           {/* <Game /> */}
         </Grid>
       </Grid>

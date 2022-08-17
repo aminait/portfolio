@@ -14,6 +14,7 @@ import CustomIcon from '../components/common/CustomIcon';
 import { useResponsive } from '../hooks/useResponsive';
 import { Grid } from '@mui/material';
 import { topNavItems, bottomNavItems } from '../content/navItems';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const activeStyles = {
   borderBottom: '0px',
@@ -115,11 +116,37 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
               onClick={toggleMenu}
             />
           ) : (
-            <CustomIcon
-              icon={'charm:menu-hamburger'}
-              sx={{ color: '#607B96' }}
-              onClick={toggleMenu}
-            />
+            <>
+              {path === '/' && (
+                <>
+                  <AnimatePresence key="mobile-menu-animation">
+                    <motion.div
+                      onClick={toggleMenu}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 0.2, scale: 1.5 }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                      }}
+                      style={{
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '50%',
+                        background: 'white',
+                        position: 'absolute',
+                        right: '20px',
+                      }}
+                    />
+                  </AnimatePresence>
+                </>
+              )}
+              <CustomIcon
+                icon={'charm:menu-hamburger'}
+                sx={{ color: '#607B96' }}
+                onClick={toggleMenu}
+              />
+            </>
           )}
         </Grid>
         {/* Mobile selected nav */}
@@ -138,22 +165,21 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
             sx={{ padding: 0, width: '100%' }}
           >
             {navItems.items.map((item, i) => (
-              <ListItem
-                key={item.name}
-                disablePadding
-                sx={{
-                  ...listItemStyles,
-                  ...(i === 0 && { borderLeft: '2px solid #1E2D3D' }),
-                  ...(path === item.link && activeStyles),
-                  borderRight: '2px solid #1E2D3D',
-                  ...(item.alignRight && {
-                    marginLeft: 'calc(52vw + 4rem)',
-                    borderLeft: '2px solid #1E2D3D',
-                    borderRight: '0',
-                  }),
-                }}
-              >
-                <Link href={item.link} passHref={true}>
+              <Link key={item.name} href={item.link} passHref={true}>
+                <ListItem
+                  disablePadding
+                  sx={{
+                    ...listItemStyles,
+                    ...(i === 0 && { borderLeft: '2px solid #1E2D3D' }),
+                    ...(path === item.link && activeStyles),
+                    borderRight: '2px solid #1E2D3D',
+                    ...(item.alignRight && {
+                      marginLeft: 'calc(52vw + 4rem)',
+                      borderLeft: '2px solid #1E2D3D',
+                      borderRight: '0',
+                    }),
+                  }}
+                >
                   {item.icon ? (
                     // <Tooltip title={item.name} placement="top">
                     <CustomIcon
@@ -180,8 +206,8 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
                       }}
                     />
                   )}
-                </Link>
-              </ListItem>
+                </ListItem>
+              </Link>
             ))}
           </List>
         </Grid>
