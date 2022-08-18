@@ -51,10 +51,6 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [path]);
 
-  useEffect(() => {
-    console.log('enterrrr');
-  }, []);
-
   return (
     <>
       <Grid

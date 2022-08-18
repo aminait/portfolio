@@ -26,7 +26,6 @@ const ContactMe = () => {
     date: new Date(Date.now()).toLocaleString(),
   });
   const [submitted, setSubmitted] = useState(false);
-  console.log('ContactMe -> values', values);
 
   const handleChange = useCallback((e) => {
     const eventName = e.target.name;
@@ -37,9 +36,6 @@ const ContactMe = () => {
   }, []);
 
   const handleSubmit = () => {
-    console.log('submiiiiit');
-    // setSubmitted(true);
-
     const { name, email, message, date } = values;
     const data = {
       name,
@@ -56,9 +52,7 @@ const ContactMe = () => {
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      console.log('Response received');
       if (res.status === 200) {
-        console.log('Response succeeded!');
         setSubmitted(true);
         setValues({
           name: '',

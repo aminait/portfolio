@@ -57,7 +57,6 @@ export default function FileTabs({
   children,
 }) {
   const { isDesktop } = useResponsive();
-  console.log('tabs', tabs);
   return (
     <>
       <Tabs defaultValue={activeTab} value={activeTab} sx={{ width: 'revert' }}>

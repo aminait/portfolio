@@ -54,10 +54,8 @@ const menuVariants = {
 const MainLayout = ({ children }) => {
   const [menu, setMenu] = useState(false);
   const [closeMenu, setCloseMenu] = useState(false);
-  console.log('MainLayout -> menu', menu);
 
   const toggleMenu = () => {
-    console.log('555555555555');
     setMenu((prev) => !prev);
     setCloseMenu((prev) => !prev);
   };

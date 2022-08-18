@@ -23,13 +23,10 @@ const dummyProjects = [
 
 const ProjectsSideNav = ({ handleCheck }) => {
   const { isDesktop, isMobile } = useResponsive();
-  console.log('ProjectsSideNav -> isDesktop', isDesktop);
   const [checked, setChecked] = React.useState([]);
-  console.log('ProjectsSideNav -> checked', checked);
   const [open, setOpen] = React.useState(true);
 
   const handleToggle = (value) => () => {
-    console.log('handleToggle -> value', value);
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 

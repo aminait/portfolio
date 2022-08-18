@@ -24,23 +24,15 @@ const TabPanel = styled(TabPanelUnstyled)(({ theme }) => ({
 const About = () => {
   const { isMobile } = useResponsive();
   const defaultTab = tabPanels.find((panel) => panel.name === 'README');
-  console.log('About -> tabPanels', tabPanels);
-  console.log('About -> defaultTab', defaultTab);
   const [openTabs, setOpenTabs] = useState([defaultTab.name]);
   const [activeTab, setActiveTab] = useState(0);
   const [content, setContent] = useState('');
-  console.log('About -> activeTab', activeTab);
   const tabs = [{ name: 'one' }, { name: 'two' }];
   const handleClickFile = (name) => {
-    console.log('000000000000000000000000', name);
     if (!openTabs.includes(name)) {
       setOpenTabs((prev) => [...prev, name]);
       setActiveTab(openTabs.length);
     } else {
-      console.log(
-        'handleClickFile -> openTabs.indexOf(name)',
-        openTabs.indexOf(name)
-      );
       setActiveTab(openTabs.indexOf(name));
     }
     const content = tabPanels.find((panel) => panel.name === name);

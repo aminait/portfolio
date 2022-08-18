@@ -8,7 +8,6 @@ const TabPanel = styled(TabPanelUnstyled)`
   font-size: 0.875rem;
 `;
 const FileTabPanel = ({ value = 0, content = 'smt' }) => {
-  console.log('FileTabPanel -> value', value);
   return <TabPanel value={value}>{content}</TabPanel>;
 };
 

@@ -1,10 +1,6 @@
 import { storeMail } from '../../db';
 import sendgrid from '@sendgrid/mail';
 
-console.log(
-  'process.env.NEXT_APP_SENDGRID_KEY',
-  process.env.NEXT_APP_SENDGRID_KEY
-);
 sendgrid.setApiKey(process.env.NEXT_APP_SENDGRID_KEY);
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req, res) {
@@ -27,7 +23,6 @@ export default async function (req, res) {
     sendgrid
       .send(contactOptions)
       .then(() => {
-        console.log('Email sent');
         storeMail({ name, email, message, date });
         // sendgrid.send(contactOptions).then(() => {
         //   console.log('contact sent');
@@ -38,7 +33,6 @@ export default async function (req, res) {
         console.error(error);
       });
   } catch (error) {
-    console.log('error', error);
     return res.status(error.statusCode || 500).json({ error: error.message });
   }
   return res.json({ success: true });

@@ -15,7 +15,6 @@ import { motion } from 'framer-motion';
 const MobileMenu = ({ toggleMenu }) => {
   const router = useRouter();
   const [show, setShow] = useState(true);
-  console.log('MobileMenu -> show', show);
   return show ? (
     <Stack direction="column" display="flex" justifyContent="space-between">
       <List disablePadding>
