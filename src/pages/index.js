@@ -196,7 +196,7 @@ export default function Home() {
                 }
               }
             >
-              {isDesktop ? (
+              {/* {isDesktop ? (
                 <>
                   <Typography
                     sx={{ color: (theme) => theme.palette.secondary.main }}
@@ -211,14 +211,14 @@ export default function Home() {
                     {'// you can also see it on my Github page'}
                   </Typography>
                 </>
-              ) : (
-                <Typography
-                  sx={{ color: (theme) => theme.palette.secondary.main }}
-                  // variant="body2"
-                >
-                  {'// find my profile on Github:'}
-                </Typography>
-              )}
+              ) : ( */}
+              <Typography
+                sx={{ color: (theme) => theme.palette.secondary.main }}
+                // variant="body2"
+              >
+                {'// find my profile on Github:'}
+              </Typography>
+              {/* )} */}
 
               <Box
                 component="div"

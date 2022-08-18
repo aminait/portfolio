@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import { styled } from '@mui/material/styles';
 import { Grid, Box } from '@mui/material';
@@ -33,6 +34,22 @@ const MainView = styled('div')(({ theme }) => ({
     paddingBottom: '1rem',
   },
 }));
+
+const menuTransition = {
+  type: 'spring',
+  duration: 1,
+  stiffness: 33,
+  delay: 0.2,
+};
+
+const menuVariants = {
+  open: {
+    transform: 'translateX(0%)',
+  },
+  closed: {
+    transform: 'translateX(100%)',
+  },
+};
 
 const MainLayout = ({ children }) => {
   const [menu, setMenu] = useState(false);

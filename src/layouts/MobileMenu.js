@@ -10,6 +10,7 @@ import {
   ListItemText,
 } from '@mui/material';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 const MobileMenu = ({ toggleMenu }) => {
   const router = useRouter();
@@ -18,25 +19,51 @@ const MobileMenu = ({ toggleMenu }) => {
   return show ? (
     <Stack direction="column" display="flex" justifyContent="space-between">
       <List disablePadding>
-        {topNavItems.items.map((item) => (
-          <ListItem
-            key={item.name}
-            disablePadding
-            sx={{ borderBottom: '2px solid #1E2D3D' }}
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleMenu();
-              router.push(item.link);
-            }}
-          >
-            <ListItemText
-              id={item.name}
-              primary={item.name}
-              sx={{ margin: '1rem' }}
-            />
-          </ListItem>
-          // </Link>
-        ))}
+        <motion.ul
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 1 },
+            visible: {
+              opacity: 1,
+              transition: {
+                delay: 0.5,
+                staggerChildren: 0.08,
+              },
+            },
+          }}
+          style={{ listStyle: 'none', padding: 0 }}
+        >
+          {topNavItems.items.map((item) => (
+            <motion.li
+              key={item.name}
+              // initial={{ opacity: 0 }}
+              // animate={{ opacity: 1 }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 },
+              }}
+              exit={{ opacity: 0 }}
+              style={{ borderBottom: '2px solid #1E2D3D' }}
+            >
+              <ListItem
+                disablePadding
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMenu();
+                  router.push(item.link);
+                }}
+              >
+                <ListItemText
+                  id={item.name}
+                  primary={item.name}
+                  sx={{ margin: '1rem' }}
+                />
+              </ListItem>
+            </motion.li>
+            // </Link>
+          ))}
+        </motion.ul>
       </List>
       {/* TODO Add footer */}
       {/* <Link

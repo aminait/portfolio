@@ -4,7 +4,7 @@ import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 
 import MainLayout from '../layouts/MainLayout';
 import ProjectsSideNav from '../components/sections/projects/ProjectsSideNav';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import EmptyState from '../components/common/EmptyState';
 import ProjectCard from '../components/sections/projects/ProjectCard';
 import { projects } from '../content/projects';
@@ -106,7 +106,14 @@ const Projects = () => {
                 </Grid>
               ) : (
                 // </LayoutGroup>
-                <EmptyState lines={emptyState} />
+                emptyState.map((line, index) => (
+                  <Typography
+                    key={index}
+                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                  >
+                    <span>{`${index + 1}.`}</span> {line}
+                  </Typography>
+                ))
               )
             ) : (
               <p></p>

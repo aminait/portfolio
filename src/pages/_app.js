@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import { Box } from '@mui/material';
+import useEventListener from '@use-it/event-listener';
+const ESCAPE_KEYS = ['27', 'Escape'];
 
 const variants = {
   hidden: { opacity: 1, x: -200, y: 0 },
@@ -17,17 +19,20 @@ const variants = {
 };
 
 function MyApp({ Component, pageProps, router }) {
-  console.log(
-    '%c What is the most common programming language? ',
-    'background: #222; color: #bada55'
-  );
-  console.log('%c Profanity', 'background: #222; color: white');
+  // function handler({ key }) {
+  //   if (ESCAPE_KEYS.includes(String(key))) {
+  //     console.log('Escape key pressed!');
+  //   }
+  //   return;
+  // }
+  // useEventListener('keydown', handler);
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => NProgress.start());
 
     router.events.on('routeChangeComplete', () => NProgress.done());
     router.events.on('routeChangeError', () => NProgress.done());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

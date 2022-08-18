@@ -14,6 +14,7 @@ const contacts = [
   {
     name: 'aminait@outlook.com',
     icon: 'ri:mail-fill',
+    link: 'mailto:aminait@outlook.com',
   },
 ];
 
@@ -103,14 +104,19 @@ const ContactMe = () => {
             <List>
               {contacts.map((contact, i) => (
                 // <div key={i}>
-                <ListItem key={i}>
-                  <Typography variant="p">
-                    <CustomIcon
-                      icon={contact.icon}
-                      sx={{ marginRight: '10px' }}
-                    />
-                    {contact.name}
-                  </Typography>
+                <ListItem key={i} sx={{ cursor: 'pointer' }}>
+                  <a
+                    href={contact.link}
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    <Typography variant="p">
+                      <CustomIcon
+                        icon={contact.icon}
+                        sx={{ marginRight: '10px' }}
+                      />
+                      {contact.name}
+                    </Typography>
+                  </a>
                 </ListItem>
                 // </div>
               ))}

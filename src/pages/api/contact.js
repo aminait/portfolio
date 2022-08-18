@@ -12,12 +12,12 @@ export default async function (req, res) {
     const { name, email, message, date } = req.body;
     // TODO - change this to be prettiers
 
-    const autoReplyOptions = {
-      from: process.env.NEXT_APP_EMAIL,
-      to: email,
-      subject: 'Your email has been received!',
-      html: '<div>Thank you for contacting us</div>',
-    };
+    // const autoReplyOptions = {
+    //   from: process.env.NEXT_APP_EMAIL,
+    //   to: email,
+    //   subject: 'Your email has been received!',
+    //   html: '<div>Thank you for contacting us</div>',
+    // };
     const contactOptions = {
       from: process.env.NEXT_APP_EMAIL,
       to: email,
@@ -25,14 +25,14 @@ export default async function (req, res) {
       html: `<div${message} from ${email}</div>`,
     };
     sendgrid
-      .send(autoReplyOptions)
+      .send(contactOptions)
       .then(() => {
         console.log('Email sent');
         storeMail({ name, email, message, date });
-        sendgrid.send(contactOptions).then(() => {
-          console.log('contact sent');
-          // return res.json({ success: true });
-        });
+        // sendgrid.send(contactOptions).then(() => {
+        //   console.log('contact sent');
+        //   // return res.json({ success: true });
+        // });
       })
       .catch((error) => {
         console.error(error);
