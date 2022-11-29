@@ -8,6 +8,7 @@ import { Grid, Typography } from '@mui/material';
 import EmptyState from '../components/common/EmptyState';
 import ProjectCard from '../components/sections/projects/ProjectCard';
 import { projects } from '../content/projects';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const Projects = () => {
   const [projectsData, setProjectsData] = useState(projects);
@@ -50,75 +51,85 @@ const Projects = () => {
         >
           <ProjectsSideNav handleCheck={handleCheck} />
         </Grid>
-        <Grid item sx={{ padding: '3rem' }}>
-          <AnimatePresence key="projects-list">
-            {!loading ? (
-              projectsData.length ? (
-                // <LayoutGroup>
-                <Grid
-                  container
-                  direction="row"
-                  display="flex"
-                  // sx={{ padding: '3rem', marginLeft: '5rem' }}
-                  // alignItems="flex-start"
-                  justifyContent="space-between"
-                  spacing={2}
-                  component={motion.ul}
-                  sx={{ listStyle: 'none' }}
-                  variants={{
-                    hidden: { opacity: 1 },
-                    visible: {
-                      opacity: 1,
-                      transition: {
-                        delay: 1,
-                        staggerChildren: 0.05,
+        <Grid
+          item
+          sx={{
+            padding: { xs: 0, md: '3rem' },
+            paddingTop: { xs: '3rem' },
+            width: '88%',
+            height: '80vh',
+          }}
+        >
+          <PerfectScrollbar>
+            <AnimatePresence key="projects-list">
+              {!loading ? (
+                projectsData.length ? (
+                  // <LayoutGroup>
+                  <Grid
+                    container
+                    direction="row"
+                    display="flex"
+                    // sx={{ padding: '3rem', marginLeft: '5rem' }}
+                    // alignItems="flex-start"
+                    justifyContent="space-between"
+                    spacing={2}
+                    component={motion.ul}
+                    sx={{ listStyle: 'none' }}
+                    variants={{
+                      hidden: { opacity: 1 },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          delay: 1,
+                          staggerChildren: 0.05,
+                        },
                       },
-                    },
-                  }}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {projectsData.map((project, id) => (
-                    <Grid
-                      item
-                      key={id}
-                      xs={12}
-                      md={4}
-                      lg={4}
-                      sx={{ marginBottom: '3rem' }}
-                    >
-                      {/* <motion.li layout initial="initial" whileHover="hover"> */}
-                      <motion.li
-                        key={id}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        variants={{
-                          hidden: { opacity: 0, y: 50 },
-                          visible: { opacity: 1, y: 0 },
-                        }}
-                      >
-                        <ProjectCard project={project} />
-                      </motion.li>
-                      {/* </motion.li> */}
-                    </Grid>
-                  ))}
-                </Grid>
-              ) : (
-                // </LayoutGroup>
-                emptyState.map((line, index) => (
-                  <Typography
-                    key={index}
-                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                    }}
+                    initial="hidden"
+                    animate="visible"
                   >
-                    <span>{`${index + 1}.`}</span> {line}
-                  </Typography>
-                ))
-              )
-            ) : (
-              <p></p>
-            )}
-          </AnimatePresence>
+                    {projectsData.map((project, id) => (
+                      <Grid
+                        item
+                        key={id}
+                        xs={12}
+                        md={4}
+                        lg={4}
+                        sx={{ marginBottom: '3rem' }}
+                      >
+                        {/* <motion.li layout initial="initial" whileHover="hover"> */}
+                        <motion.li
+                          key={id}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0 },
+                          }}
+                        >
+                          <ProjectCard project={project} />
+                        </motion.li>
+                        {/* </motion.li> */}
+                      </Grid>
+                    ))}
+                  </Grid>
+                ) : (
+                  // </LayoutGroup>
+                  emptyState.map((line, index) => (
+                    <Typography
+                      key={index}
+                      sx={{ color: (theme) => theme.palette.secondary.main }}
+                    >
+                      <span>{`${index + 1}.`}</span> {line}
+                    </Typography>
+                  ))
+                )
+              ) : (
+                <p></p>
+              )}
+            </AnimatePresence>
+          </PerfectScrollbar>
           {/* <EmptyState /> */}
         </Grid>
       </Grid>

@@ -40,7 +40,7 @@ export default function ProjectCard({ project, sx }) {
         <Card
           sx={{
             marginTop: '1rem',
-            width: { xs: 250, md: 350 },
+            width: { xs: '100%', md: '20vw' },
             backgroundColor: (theme) => theme.palette.primary.light,
             color: (theme) => theme.palette.secondary.main,
             borderColor: (theme) => theme.palette.lines.light,

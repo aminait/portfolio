@@ -53,22 +53,22 @@ const Navbar = ({ nav, toggleNav }) => {
         borderBottom: '2px solid #1E2D3D',
       }}
     >
-      <Link href={'/'} passHref={true}>
-        <Box
-          sx={{
-            width: {
-              xs: '75%',
-              md: '12%',
-            },
-            color: (theme) => theme.palette.secondary.main,
-            cursor: 'pointer',
-          }}
-        >
+      {/* <Box
+        sx={{
+          width: {
+            xs: '75%',
+            md: '12%',
+          },
+          color: (theme) => theme.palette.secondary.main,
+          cursor: 'pointer',
+        }}
+      >
+        <Link href={'/'} passHref={true}>
           <Typography sx={{ textAlign: 'center', margin: '1rem' }}>
             amina-ait
           </Typography>
-        </Box>
-      </Link>
+        </Link>
+      </Box> */}
       {/* Mobile nav */}
       <Box
         sx={{
@@ -100,6 +100,7 @@ const Navbar = ({ nav, toggleNav }) => {
         sx={{
           display: { xs: 'none', md: 'flex' },
           whiteSpace: 'nowrap',
+          maxWidth: '88%',
         }}
       >
         <List component={Stack} direction="row" sx={{ padding: 0 }}>

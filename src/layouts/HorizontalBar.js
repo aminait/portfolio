@@ -64,7 +64,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
       >
         <Grid
           item
-          justifyContent="start"
+          // justifyContent="start"
           sx={{
             width: {
               xs: '75%',
@@ -151,18 +151,15 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
         <Grid
           item
           sx={{
-            display: { xs: 'none', md: 'flex' },
+            display: { xs: 'none', md: 'block' },
+            width: '88%',
             whiteSpace: 'nowrap',
           }}
         >
-          <List
-            component={Stack}
-            direction="row"
-            sx={{ padding: 0, width: '100%' }}
-          >
+          <List component={Stack} direction="row" sx={{ padding: 0 }}>
             {navItems.items.map((item, i) => (
               <Link key={item.name} href={item.link} passHref={true}>
-                <ListItem
+                <Box
                   disablePadding
                   sx={{
                     ...listItemStyles,
@@ -170,7 +167,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
                     ...(path === item.link && activeStyles),
                     borderRight: '2px solid #1E2D3D',
                     ...(item.alignRight && {
-                      marginLeft: 'calc(52vw + 4rem)',
+                      marginLeft: 'calc(45vw + 4rem)',
                       borderLeft: '2px solid #1E2D3D',
                       borderRight: '0',
                     }),
@@ -202,7 +199,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
                       }}
                     />
                   )}
-                </ListItem>
+                </Box>
               </Link>
             ))}
           </List>

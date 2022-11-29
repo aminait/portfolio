@@ -82,7 +82,7 @@ const About = () => {
             container
             display="flex"
             flexDirection="row"
-            sx={{ height: '100%' }}
+            // sx={{ height: '100%' }}
           >
             <Grid
               item
@@ -166,7 +166,7 @@ const About = () => {
               item
               lg={6}
               sx={{
-                height: '47rem',
+                height: '80vh',
                 display: { xs: 'none', md: 'block' },
               }}
             >
