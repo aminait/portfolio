@@ -40,6 +40,7 @@ const BottomBarContainer = styled(Box)(({ theme }) => ({
 
 const MainView = styled('div')(({ theme }) => ({
   height: '86.5%',
+  zIndex: 10,
   [theme.breakpoints.down('md')]: {
     overflow: 'scroll',
     paddingBottom: '1rem',

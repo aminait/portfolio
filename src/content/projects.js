@@ -1,6 +1,6 @@
 export const projects = [
   {
-    index: 1,
+    index: 3,
     image:
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2FScreenshot%20from%202022-08-04%2016-24-58.png?alt=media&token=b23ccd00-53bb-4653-9c2c-b1331432e0aa',
     tags: ['react', 'firebase'],
@@ -18,14 +18,14 @@ export const projects = [
     tags: ['next.js', 'mongodb'],
     title: 'blog-app',
     description:
-      'A starter blog template built with Material UI and Next.js. The repository can be cloned and customized by anyone',
+      'A starter blog template built with Material UI and Next.js. Can be customized by anyone',
     liveLink: 'https://material-ui-nextjs-blog.vercel.app/',
     repoLink: 'https://github.com/aminait/material-ui-nextjs-blog',
     previewLink:
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2Fscrnli-4-8-2024-9-14-56-pm_yQptKXry.mp4?alt=media&token=bcee1cb5-0987-448b-bc7c-b3338cc9e060',
   },
   {
-    index: 3,
+    index: 1,
     image:
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2FScreenshot%20from%202024-04-08%2020-47-38.png?alt=media&token=2894b2d7-869f-428f-8c76-307b40abe130',
     tags: ['python', 'openai'],
@@ -37,7 +37,7 @@ export const projects = [
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2Fscrnli_4_8_2024_9-38-21%20PM.mp4?alt=media&token=16c275a2-fa37-41f4-8a2f-36a7bea386f0',
   },
   {
-    index: 4,
+    index: 5,
     image:
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2FScreenshot%20from%202024-04-08%2020-53-55.png?alt=media&token=e7aa7fa9-6bad-4059-a1ac-a7e02e90c7b3',
     tags: ['next.js', 'material-ui'],
@@ -50,7 +50,7 @@ export const projects = [
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2Fscrnli-4-8-2024-8-56-25-pm_65NHiiXi.mp4?alt=media&token=09cfbfad-9979-415d-954c-12e4c81e3532',
   },
   {
-    index: 5,
+    index: 4,
     image:
       'https://firebasestorage.googleapis.com/v0/b/portfolio-1c480.appspot.com/o/projects%2FScreenshot%20from%202022-08-05%2012-19-22.png?alt=media&token=2f7cc976-554b-4a50-8dd1-deaf39bef992',
     tags: ['next.js'],

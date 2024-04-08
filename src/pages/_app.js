@@ -80,8 +80,8 @@ function MyApp({ Component, pageProps, router }) {
         <SnackbarProvider
           ref={notistackRef}
           dense
-          autoHideDuration={1000000}
-          maxSnack={3}
+          autoHideDuration={10000}
+          maxSnack={1}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right',

@@ -14,7 +14,7 @@ export const topNavItems = {
 export const bottomNavItems = {
   main: { name: 'Find me on:', link: '' },
   items: [
-    { icon: 'fa:linkedin', link: 'https://linkedin.com/', name: 'LinkedIn' },
+    { icon: 'fa:linkedin', link: 'https://linkedin.com/in/amina-ait', name: 'LinkedIn' },
     {
       icon: 'ant-design:github-outlined',
       name: '@aminait',

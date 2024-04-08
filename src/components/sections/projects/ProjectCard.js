@@ -22,43 +22,29 @@ export default function ProjectCard({ project, sx }) {
     <Box
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      sx={{ cursor: 'pointer' }}
+      sx={{
+        // cursor: 'pointer',
+        backgroundColor: (theme) => theme.palette.primary.light,
+        marginBottom: '1rem',
+      }}
     >
-      <Box
-        component="div"
-        sx={{
-          color: (theme) => theme.palette.secondary.purple,
-          display: 'inline',
-        }}
-      >
-        {`Project ${index} `}
-        <Typography
-          component="div"
-          sx={{
-            color: (theme) => theme.palette.secondary.main,
-            display: 'inline',
-          }}
-        >
-          {`// _${title}`}
-        </Typography>
-      </Box>
-
-      <Box component="a" href={liveLink || repoLink} sx={{ textDecoration: 'none' }}>
+      <Box sx={{ textDecoration: 'none' }}>
         <Card
           sx={{
-            marginTop: '1rem',
-            width: { xs: '100%', md: '20vw' },
+            // marginTop: '1rem',
+            paddingBottom: '1rem',
+            // width: { xs: '100%', md: '20vw' },
             backgroundColor: (theme) => theme.palette.primary.light,
             color: (theme) => theme.palette.secondary.main,
-            borderColor: (theme) => theme.palette.lines.light,
-            borderRadius: '0.5rem',
-            borderStyle: 'solid',
-            borderWidth: '2px',
+            // borderColor: (theme) => theme.palette.lines.light,
+            // borderRadius: '0.5rem',
+            // borderStyle: 'solid',
+            // borderWidth: '2px',
             transition: 'transform 0.3s ease-in-out',
-            '&:hover': {
-              transform: 'scale3d(1.02, 1.02, 1)',
-              boxShadow: '0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1)',
-            },
+            width: '380px', // The fixed width of each card
+            height: '280px', // The fixed height of each card
+            // paddingBo.: '1rem',
+
             // ...sx,
           }}
         >
@@ -133,8 +119,37 @@ export default function ProjectCard({ project, sx }) {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
+              ...(isHovered && {
+                transform: 'scale3d(1.02, 1.02, 1)',
+                transition: 'opacity 0.5s ease-in-out',
+                // boxShadow: '0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1)',
+              }),
+              // '&:hover': {
+              //   transform: 'scale3d(1.02, 1.02, 1)',
+              //   boxShadow: '0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1)',
+              // },
             }}
           >
+            <Box
+              component="div"
+              sx={{
+                color: 'white',
+                display: 'inline',
+                marginBottom: '1rem',
+                // fontWeight: 800,
+              }}
+            >
+              {`Project ${index} `}
+              <Typography
+                component="div"
+                sx={{
+                  color: (theme) => theme.palette.accent.green,
+                  display: 'inline',
+                }}
+              >
+                {`// _${title}`}
+              </Typography>
+            </Box>
             <Typography variant="body2">{description}</Typography>
             <CardActions>
               {liveLink && (
@@ -144,6 +159,7 @@ export default function ProjectCard({ project, sx }) {
                     backgroundColor: (theme) => theme.palette.lines.light,
                     color: 'white',
                     textTransform: 'none',
+                    // paddingX: '10px',
                   }}
                   href={liveLink}
                   target="_blank"
