@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import { styled } from '@mui/material/styles';
@@ -24,11 +24,22 @@ const MainStyle = styled('div')(({ theme }) => ({
   borderWidth: '2px',
   width: '95%',
   height: '95%',
-  paddingBottom: '1rem',
+  // display: 'flex', // Use flex layout
+  // flexDirection: 'column', // Stack children vertically
+  // justifyContent: 'space-between', // Space between top and bottom elements
+  position: 'relative', // Set position relative for absolute child positioning
+}));
+
+const BottomBarContainer = styled(Box)(({ theme }) => ({
+  position: 'absolute', // Position the bottom bar absolutely
+  bottom: 0, // Anchor to the bottom
+  left: 0,
+  right: 0,
+  display: { xs: 'none', md: 'block' }, // Only show on md breakpoint and up
 }));
 
 const MainView = styled('div')(({ theme }) => ({
-  height: '87%',
+  height: '86.5%',
   [theme.breakpoints.down('md')]: {
     overflow: 'scroll',
     paddingBottom: '1rem',
@@ -54,6 +65,22 @@ const menuVariants = {
 const MainLayout = ({ children }) => {
   const [menu, setMenu] = useState(false);
   const [closeMenu, setCloseMenu] = useState(false);
+  const footerRef = useRef(null);
+  const [footerHeight, setFooterHeight] = useState(0);
+
+  const ContentContainer = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    // height: `calc(100vh - ${footerHeight})`,
+    // height: '100%',
+    overflow: 'hidden',
+  });
+
+  const SidebarAndMainSection = styled('div')({
+    flexGrow: 1,
+    display: 'flex',
+    overflow: 'auto', // Add scroll to the main content area if content overflows
+  });
 
   const toggleMenu = () => {
     setMenu((prev) => !prev);
@@ -65,6 +92,12 @@ const MainLayout = ({ children }) => {
   //   setCloseMenu((prev) => !prev);
   // };
 
+  useEffect(() => {
+    if (footerRef.current) {
+      setFooterHeight(footerRef.current.clientHeight);
+    }
+  }, []);
+
   return (
     <BgStyle>
       <MainStyle>
@@ -75,17 +108,11 @@ const MainLayout = ({ children }) => {
           closeMenu={closeMenu}
           setCloseMenu={setCloseMenu}
         />
-        <MainView>
-          {menu ? <MobileMenu toggleMenu={toggleMenu} /> : children}
-        </MainView>
+        <MainView>{menu ? <MobileMenu toggleMenu={toggleMenu} /> : <>{children}</>}</MainView>
         {/* <Footer /> */}
-        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          <HorizontalBar
-            toggleMenu={toggleMenu}
-            isTop={false}
-            navItems={bottomNavItems}
-          />
-        </Box>
+        <BottomBarContainer ref={footerRef}>
+          <HorizontalBar toggleMenu={toggleMenu} isTop={false} navItems={bottomNavItems} />
+        </BottomBarContainer>
       </MainStyle>
     </BgStyle>
   );

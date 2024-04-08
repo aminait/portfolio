@@ -7,32 +7,49 @@ import {
   InputLabel,
   CssBaseline,
   Button,
+  CircularProgress,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 // TODO - add active styles
 // TODO - Add validation
 
-const StyledInputLabel = styled((props) => (
-  <InputLabel shrink {...props} color="secondary" />
-))(({ theme }) => ({
-  color: theme.palette.secondary.main,
-  fontWeight: 450,
-  fontSize: '20px',
-}));
+const StyledInputLabel = styled((props) => <InputLabel shrink {...props} color="secondary" />)(
+  ({ theme }) => ({
+    color: theme.palette.secondary.main,
+    fontWeight: 450,
+    fontSize: '20px',
+  })
+);
 
-const StyledTextField = styled((props) => (
-  <TextField variant="outlined" {...props} fullWidth />
-))(({ theme }) => ({
-  backgroundColor: theme.palette.primary.light,
-  border: `1px solid ${theme.palette.lines.light}`,
-  borderRadius: '0.5rem',
-  input: { color: theme.palette.secondary.main },
-  textarea: { color: theme.palette.secondary.main },
-  marginBottom: '1.5rem',
-}));
+const StyledTextField = styled((props) => <TextField variant="outlined" {...props} fullWidth />)(
+  ({ theme }) => ({
+    backgroundColor: theme.palette.primary.light,
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '0.5rem',
+      border: `1px solid ${theme.palette.lines.light}`,
+      '& input': {
+        // color: theme.palette.secondary.main,
+        color: 'white',
+      },
+      '& textarea': {
+        // color: theme.palette.secondary.main,
+        color: 'white',
+      },
+      '& fieldset': {
+        transition: 'border-color 0.2s', // Optional: adds transition for border color change
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: theme.palette.lines.main, // Color for border when TextField is focused
+        borderWidth: '1px', // Increased border width when focused
+      },
+    },
+    marginBottom: '1.5rem',
+    fontSize: 14,
+  })
+);
 
-const ContactForm = ({ handleChange, handleSubmit }) => {
+const ContactForm = ({ handleChange, handleSubmit, loading }) => {
   // useEffect(() => {
   //   setValues((prevValues) => ({ ...prevValues, email: 'Jonahatham' }));
   // });
@@ -42,11 +59,7 @@ const ContactForm = ({ handleChange, handleSubmit }) => {
       {/* <CssBaseline /> */}
       <StyledInputLabel>_name:</StyledInputLabel>
       {/* <FormControl variant="standard"> */}
-      <StyledTextField
-        id="name-input"
-        name="name"
-        onChange={(e) => handleChange(e)}
-      />
+      <StyledTextField id="name-input" name="name" onChange={(e) => handleChange(e)} />
       {/* </FormControl> */}
       <StyledInputLabel>_email:</StyledInputLabel>
       {/* <FormControl variant="standard"> */}
@@ -54,6 +67,7 @@ const ContactForm = ({ handleChange, handleSubmit }) => {
         id="email-input"
         name="email"
         onChange={(e) => handleChange(e)}
+        type="email"
       />
       {/* </FormControl> */}
       <StyledInputLabel>_message:</StyledInputLabel>
@@ -72,12 +86,16 @@ const ContactForm = ({ handleChange, handleSubmit }) => {
           backgroundColor: (theme) => theme.palette.lines.light,
           color: 'white',
           textTransform: 'none',
+          paddingX: '15px',
+          paddingY: '7px',
+          fontSize: 14,
         }}
         // onSubmit={handleSubmit}
         onClick={handleSubmit}
+        disabled={loading}
         // TODO add enter key event
       >
-        submit-message
+        {loading ? <CircularProgress size="sm" /> : 'submit-message'}
       </Button>
     </div>
   );

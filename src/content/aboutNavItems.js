@@ -37,6 +37,12 @@ const profItems = [
     name: 'README',
     type: 'file',
   },
+  // {
+  //   id: 4,
+  //   name: 'preview.js',
+  //   type: 'code',
+  //   icon: '',
+  // },
 ];
 
 const personalItems = [
@@ -51,26 +57,26 @@ const personalItems = [
         name: 'university',
         type: 'file',
       },
-      // {
-      //   id: 11,
-      //   name: 'highschool',
-      //   type: 'file',
-      // },
+      {
+        id: 11,
+        name: 'high-school',
+        type: 'file',
+      },
     ],
   },
-  // {
-  //   id: 6,
-  //   name: 'interests',
-  //   type: 'folder',
-  //   color: 'green',
-  //   children: [
-  //     {
-  //       id: 12,
-  //       name: 'robotics',
-  //       type: 'file',
-  //     },
-  //   ],
-  // },
+  {
+    id: 6,
+    name: 'interests',
+    type: 'folder',
+    color: 'green',
+    children: [
+      {
+        id: 12,
+        name: 'robotics',
+        type: 'file',
+      },
+    ],
+  },
 ];
 
 export const navItems = [

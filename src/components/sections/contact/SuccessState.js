@@ -23,6 +23,9 @@ const SuccessState = ({ resetForm }) => {
           color: 'white',
           textTransform: 'none',
           marginTop: '1rem',
+          paddingX: '15px',
+          paddingY: '7px',
+          fontSize: 14,
         }}
         // onSubmit={handleSubmit}
         onClick={resetForm}

@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import Link from '../components/common/Link';
 import { useRouter } from 'next/router';
-import {
-  Box,
-  Stack,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-} from '@mui/material';
+import { Box, Stack, Typography, List, ListItem, ListItemText } from '@mui/material';
 import CustomIcon from '../components/common/CustomIcon';
 
 const navItems = [
@@ -57,7 +50,7 @@ const Navbar = ({ nav, toggleNav }) => {
         sx={{
           width: {
             xs: '75%',
-            md: '12%',
+            md: '13.5%',
           },
           color: (theme) => theme.palette.secondary.main,
           cursor: 'pointer',
@@ -81,11 +74,7 @@ const Navbar = ({ nav, toggleNav }) => {
         }}
       >
         {closeMenu ? (
-          <CustomIcon
-            icon="codicon:chrome-close"
-            sx={{ color: '#607B96' }}
-            onClick={toggleMenu}
-          />
+          <CustomIcon icon="codicon:chrome-close" sx={{ color: '#607B96' }} onClick={toggleMenu} />
         ) : (
           <CustomIcon
             icon={'charm:menu-hamburger'}
@@ -100,7 +89,7 @@ const Navbar = ({ nav, toggleNav }) => {
         sx={{
           display: { xs: 'none', md: 'flex' },
           whiteSpace: 'nowrap',
-          maxWidth: '88%',
+          maxWidth: '86.5%',
         }}
       >
         <List component={Stack} direction="row" sx={{ padding: 0 }}>

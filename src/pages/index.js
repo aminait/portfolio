@@ -5,9 +5,32 @@ import Head from 'next/head';
 import { Grid, Typography, Box, Slide } from '@mui/material';
 import MainLayout from '../layouts/MainLayout';
 import { useResponsive } from '../hooks/useResponsive';
+import RolodexCard from '../components/sections/home/rolodex/RolodexCard';
+import Rolodex from '../components/sections/home/rolodex/RolodexContainer';
+import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
 
-const titles = ['Software Developer', 'Computer Engineer'];
+const titles = ['Software Engineer', 'Full Stack Web Developer'];
 export default function Home() {
+  const router = useRouter();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const cards = [
+    { title: 'About Me', content: 'hi' },
+    {
+      title: '_about-me',
+      content:
+        'I am a full stack web developer specializing in building web apps and SaaS products. My stack:',
+    },
+    // { title: 'Proficiencies', content: 'Techs' },
+    { title: 'Latest Project', content: 'Realtime Dashboard' },
+    { title: 'Featured Project', content: 'hi' },
+    { title: 'Education', content: 'hi' },
+    { title: 'About Me', content: 'hi' },
+    { title: 'About Me', content: 'hi' },
+    // ... Add as many card contents as you want
+  ];
+
   const { isDesktop } = useResponsive();
   const [fade, setFade] = useState(false);
   const [transition, setTransition] = useState(true);
@@ -32,8 +55,28 @@ export default function Home() {
     visible: { opacity: 1, y: 0 },
   };
 
+  const action = (snackbarId) => (
+    <>
+      <button
+        onClick={() => {
+          alert(`I belong to snackbar with id ${snackbarId}`);
+        }}
+      >
+        Undo
+      </button>
+      <button
+        onClick={() => {
+          closeSnackbar(snackbarId);
+        }}
+      >
+        Dismiss
+      </button>
+    </>
+  );
+
   useEffect(() => {
     setFade(true);
+    // enqueueSnackbar('New theme available', { action });
   }, []);
 
   const line1 = 'Hi all, I am';
@@ -48,8 +91,27 @@ export default function Home() {
         setCurrentIndex((prev) => prev + 1);
       }
       setFade(true);
-    }, 2500);
+    }, 1000);
   };
+
+  // const handleScroll = (e) => {
+  //   //  if (e.deltaY < 0) {
+
+  //   //  } else
+  //   if (e.deltaY > 0) {
+  //     router.push('/about');
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('wheel', handleScroll);
+
+  //   // Clean up the event listener
+  //   return () => {
+  //     window.removeEventListener('wheel', handleScroll);
+  //   };
+  // }, []);
+
   // TODO - make font smaller
   return (
     <>
@@ -65,8 +127,9 @@ export default function Home() {
         alignItems="center"
         sx={{
           height: 'inherit',
+          paddingX: 25,
         }}
-        spacing={2}
+        // spacing={2}
       >
         <Grid item xs={12} sm={12} md={6} lg={6}>
           <Grid
@@ -133,11 +196,7 @@ export default function Home() {
               <Typography>Hi all, I am</Typography>
               {/* </motion.div> */}
               <AnimatePresence key="second-title">
-                <motion.h2
-                  variants={sentence}
-                  initial="hidden"
-                  animate="visible"
-                >
+                <motion.h2 variants={sentence} initial="hidden" animate="visible">
                   <Typography variant="h2">
                     {line2.split('').map((char, index) => {
                       return (
@@ -150,25 +209,22 @@ export default function Home() {
                 </motion.h2>
               </AnimatePresence>
               <AnimatePresence key="job-title">
-                <Typography
-                  variant="h5"
-                  sx={{ color: (theme) => theme.palette.accent.green }}
-                >
-                  {fade ? (
-                    <motion.div
-                      // variants={sentence}
-                      key={titles[currentIndex]}
-                      onAnimationComplete={onComplete}
-                      initial={{ y: 10, opacity: 0.1 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {titles[currentIndex]}
-                    </motion.div>
-                  ) : (
+                <Typography variant="h5" sx={{ color: (theme) => theme.palette.accent.green }}>
+                  {/* {fade ? ( */}
+                  <motion.div
+                    // variants={sentence}
+                    key={titles[0]}
+                    onAnimationComplete={onComplete}
+                    initial={{ y: 10, opacity: 0.1 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    {titles[0]}
+                  </motion.div>
+                  {/* ) : (
                     titles[currentIndex]
-                  )}
+                  )} */}
                 </Typography>
               </AnimatePresence>
 
@@ -256,14 +312,37 @@ export default function Home() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item sx={{ display: { xs: 'none', md: 'block' } }}>
-          {' '}
+
+        <Grid item xs={12} sm={12} md={6} lg={6} sx={{ display: { xs: 'none', md: 'block' } }}>
+          {/* <Rolodex cards={cards} /> */}
           {/* DESKTOP */}
           <AnimatePresence key="grid-color-bg-desktop">
             <motion.div
               key={3}
-              initial={{ opacity: 0.6, x: 20, y: 20 }}
-              animate={{ opacity: 0.4, x: 100, y: 0 }}
+              initial={{ opacity: 0.5, x: 20, y: 100 }}
+              animate={{ opacity: 0.3, x: -90, y: 30 }}
+              exit={{ opacity: 0, x: 20, y: 0 }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+              style={{
+                position: 'absolute',
+                right: '26rem',
+                left: 'unset',
+                top: '2rem',
+                width: '30rem',
+                height: '25rem',
+                background: '#43D9AD',
+                filter: 'blur(140px)',
+                transform: 'rotate(-94.3deg)',
+              }}
+            />
+            <motion.div
+              key={4}
+              initial={{ opacity: 0.3, x: -20, y: -100 }}
+              animate={{ opacity: 0.6, x: 90, y: -30 }}
               exit={{ opacity: 0, x: 20, y: 0 }}
               transition={{
                 duration: 3,
@@ -272,29 +351,10 @@ export default function Home() {
               }}
               style={{
                 position: 'absolute',
-                right: '26rem',
-                left: 'unset',
-                top: '15rem',
-                width: '20rem',
-                height: '12rem',
-                background: '#43D9AD',
-                filter: 'blur(140px)',
-                transform: 'rotate(-94.3deg)',
-              }}
-            />
-            <motion.div
-              key={4}
-              initial={{ opacity: 0.3 }}
-              animate={{ opacity: 0.6 }}
-              transition={{
-                duration: 1,
-              }}
-              style={{
-                position: 'absolute',
-                bottom: '10rem',
+                bottom: '2rem',
                 right: '15rem',
                 width: '20rem',
-                height: '12rem',
+                height: '32rem',
 
                 background: ' #4D5BCE',
                 opacity: '0.6',

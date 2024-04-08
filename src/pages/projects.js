@@ -18,9 +18,7 @@ const Projects = () => {
   const handleCheck = (checkedItems) => {
     setLoading(true);
     const filteredProjects = projects.filter((project) =>
-      checkedItems.every((item) =>
-        project.tags.includes(item.name.toLowerCase())
-      )
+      checkedItems.every((item) => project.tags.includes(item.name.toLowerCase()))
     );
     setTimeout(() => {
       setProjectsData(filteredProjects);
@@ -44,7 +42,7 @@ const Projects = () => {
           sx={{
             width: {
               xs: 'inherit',
-              md: '12%',
+              md: '13.5%',
             },
             borderRight: '2px solid #1E2D3D',
           }}
@@ -56,7 +54,7 @@ const Projects = () => {
           sx={{
             padding: { xs: 0, md: '3rem' },
             paddingTop: { xs: '3rem' },
-            width: '88%',
+            width: '86.5%',
             height: '80vh',
           }}
         >
@@ -89,14 +87,7 @@ const Projects = () => {
                     animate="visible"
                   >
                     {projectsData.map((project, id) => (
-                      <Grid
-                        item
-                        key={id}
-                        xs={12}
-                        md={4}
-                        lg={4}
-                        sx={{ marginBottom: '3rem' }}
-                      >
+                      <Grid item key={id} xs={12} md={4} lg={4} sx={{ marginBottom: '3rem' }}>
                         {/* <motion.li layout initial="initial" whileHover="hover"> */}
                         <motion.li
                           key={id}
@@ -117,10 +108,7 @@ const Projects = () => {
                 ) : (
                   // </LayoutGroup>
                   emptyState.map((line, index) => (
-                    <Typography
-                      key={index}
-                      sx={{ color: (theme) => theme.palette.secondary.main }}
-                    >
+                    <Typography key={index} sx={{ color: (theme) => theme.palette.secondary.main }}>
                       <span>{`${index + 1}.`}</span> {line}
                     </Typography>
                   ))

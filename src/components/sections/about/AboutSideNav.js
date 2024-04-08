@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Tooltip,
-  Box,
-} from '@mui/material';
+import { List, ListItem, ListItemButton, ListItemText, Tooltip, Box } from '@mui/material';
 import Dropdown from '../../common/Dropdown';
 import CustomIcon from '../../common/CustomIcon';
 import SecondaryDropdown from '../../common/SecondaryDropdown';
@@ -19,7 +12,7 @@ const AboutSideNav = ({ handleClickFile }) => {
     <Box>
       {navItems.map((item, i) => {
         return (
-          <Dropdown key={i} text={item.text}>
+          <Dropdown key={i} text={item.text} isOpen={item.isOpen}>
             <List>
               {item.subItems.map((subItem, i) => {
                 {
@@ -32,15 +25,14 @@ const AboutSideNav = ({ handleClickFile }) => {
                           icon={'ri:folder-3-fill'}
                           sx={{
                             marginRight: '5px',
-                            color: (theme) =>
-                              `${theme.palette.accent[subItem.color]}`,
+                            color: (theme) => `${theme.palette.accent[subItem.color]}`,
                           }}
                         />
                         {subItem.name}
                       </>
                     );
                     return (
-                      <SecondaryDropdown key={i} text={text}>
+                      <SecondaryDropdown key={i} text={text} isOpen={i === 0}>
                         {subItem.children.map((child) => (
                           <ListItem key={child.name} disablePadding>
                             <ListItemButton
@@ -48,10 +40,7 @@ const AboutSideNav = ({ handleClickFile }) => {
                               onClick={() => handleClickFile(child.name)}
                               disableRipple
                             >
-                              <CustomIcon
-                                icon={'ri:file-info-line'}
-                                sx={{ marginRight: '5px' }}
-                              />
+                              <CustomIcon icon={'ri:file-info-line'} sx={{ marginRight: '5px' }} />
 
                               <ListItemText
                                 id={listId}

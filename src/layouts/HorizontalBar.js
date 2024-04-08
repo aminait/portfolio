@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from '../components/common/Link';
 import { useRouter } from 'next/router';
-import {
-  Box,
-  Stack,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  Tooltip,
-} from '@mui/material';
+import { Box, Stack, Typography, List, ListItem, ListItemText, Tooltip } from '@mui/material';
 import CustomIcon from '../components/common/CustomIcon';
 import { useResponsive } from '../hooks/useResponsive';
 import { Grid } from '@mui/material';
@@ -68,7 +60,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
           sx={{
             width: {
               xs: '75%',
-              md: '12%',
+              md: '13.4%',
             },
             color: (theme) => theme.palette.secondary.main,
             cursor: 'pointer',
@@ -76,7 +68,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
         >
           {navItems.main.link ? (
             <Link href={navItems.main.link} passHref={true}>
-              <Typography sx={{ textAlign: 'left', margin: '1rem' }}>
+              <Typography sx={{ textAlign: 'left', margin: '1rem', color: 'white' }}>
                 {navItems.main.name}
               </Typography>
             </Link>
@@ -152,7 +144,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
           item
           sx={{
             display: { xs: 'none', md: 'block' },
-            width: '88%',
+            width: '80%',
             whiteSpace: 'nowrap',
           }}
         >

@@ -14,6 +14,7 @@ export default async function (req, res) {
     //   subject: 'Your email has been received!',
     //   html: '<div>Thank you for contacting us</div>',
     // };
+    await storeMail({ name, email, message, date });
     const contactOptions = {
       from: process.env.NEXT_APP_EMAIL,
       to: email,
@@ -33,6 +34,7 @@ export default async function (req, res) {
         console.error(error);
       });
   } catch (error) {
+    console.log('error:', error);
     return res.status(error.statusCode || 500).json({ error: error.message });
   }
   return res.json({ success: true });

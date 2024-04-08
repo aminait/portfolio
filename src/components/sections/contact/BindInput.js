@@ -1,13 +1,13 @@
 import React from 'react';
-import { CodeBlock, anOldHope } from 'react-code-blocks';
+import { CodeBlock, anOldHope, far, noctisViola, pojoaque } from 'react-code-blocks';
 
 const BindInput = ({ values }) => {
   const code = `const button = document.querySelector('#sendBtn');
 const message = {
-name: "${values.name}",
-email: "${values.email}",
-message: "${values.message}",
-date: "${values.date}"
+    name: "${values.name}",
+    email: "${values.email}",
+    message: "${values.message}",
+    date: "${values.date}"
 }
 
 button.addEventListener('click', () => {

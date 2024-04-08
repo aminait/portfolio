@@ -26,6 +26,7 @@ const ContactMe = () => {
     date: new Date(Date.now()).toLocaleString(),
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = useCallback((e) => {
     const eventName = e.target.name;
@@ -36,6 +37,7 @@ const ContactMe = () => {
   }, []);
 
   const handleSubmit = () => {
+    setLoading(true);
     const { name, email, message, date } = values;
     const data = {
       name,
@@ -51,17 +53,21 @@ const ContactMe = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.status === 200) {
-        setSubmitted(true);
-        setValues({
-          name: '',
-          email: '',
-          message: '',
-          date: new Date(Date.now()).toLocaleString(),
-        });
-      }
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          setSubmitted(true);
+          setValues({
+            name: '',
+            email: '',
+            message: '',
+            date: new Date(Date.now()).toLocaleString(),
+          });
+        }
+      })
+      .catch((err) => console.log);
+
+    setLoading(false);
   };
 
   const resetForm = () => {
@@ -79,35 +85,25 @@ const ContactMe = () => {
         <title>Amina Ait | Contact</title>
       </Head>
 
-      <Grid
-        container
-        justifyContent="start"
-        sx={{ height: { xs: 'auto', md: '100%' } }}
-      >
+      <Grid container justifyContent="start" sx={{ height: { xs: 'auto', md: '100%' } }}>
         <Grid
           item
           sx={{
             width: {
               xs: 'inherit',
-              md: '12%',
+              md: '13.5%',
             },
             borderRight: `2px solid #1E2D3D`,
           }}
         >
-          <Dropdown text="contacts">
+          <Dropdown text="contacts" isOpen={true}>
             <List>
               {contacts.map((contact, i) => (
                 // <div key={i}>
                 <ListItem key={i} sx={{ cursor: 'pointer' }}>
-                  <a
-                    href={contact.link}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
+                  <a href={contact.link} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <Typography variant="p">
-                      <CustomIcon
-                        icon={contact.icon}
-                        sx={{ marginRight: '10px' }}
-                      />
+                      <CustomIcon icon={contact.icon} sx={{ marginRight: '10px' }} />
                       {contact.name}
                     </Typography>
                   </a>
@@ -145,6 +141,7 @@ const ContactMe = () => {
             <ContactForm
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              loading={loading}
             />
           )}
         </Grid>
