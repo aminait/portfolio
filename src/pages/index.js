@@ -127,7 +127,10 @@ export default function Home() {
         alignItems="center"
         sx={{
           height: 'inherit',
-          paddingX: 25,
+          paddingX: {
+            xs: 5,
+            md: 35,
+          },
         }}
         // spacing={2}
       >
@@ -138,55 +141,8 @@ export default function Home() {
             justify="space-around"
             spacing={8}
             ref={containerRef}
-            sx={{ padding: '2rem' }}
+            // sx={{ padding: '2rem' }}
           >
-            {/* COLOR BG */}
-            <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
-              <AnimatePresence key={'grid-color-bg-mobile'}>
-                <motion.div
-                  key={1}
-                  initial={{ opacity: 0.6, x: 100, y: 20 }}
-                  animate={{ opacity: 0.4, x: 0, y: 100 }}
-                  exit={{ opacity: 0, x: 20, y: 0 }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                  }}
-                  style={{
-                    position: 'absolute',
-                    // left: '1rem',
-                    // top: '15rem',
-                    width: '11rem',
-                    height: '12rem',
-                    background: '#43D9AD',
-                    opacity: '0.6',
-                    filter: 'blur(90px)',
-                  }}
-                />
-                <motion.div
-                  key={2}
-                  initial={{ opacity: 0.6 }}
-                  animate={{ opacity: 0.4 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                  }}
-                  style={{
-                    position: 'absolute',
-                    bottom: '15rem',
-                    right: '1rem',
-                    width: '11rem',
-                    height: '12rem',
-                    background: ' #4D5BCE',
-                    opacity: '0.6',
-                    filter: 'blur(90px)',
-                  }}
-                />
-              </AnimatePresence>
-            </Grid>
             <Grid item>
               {/* <motion.div
                 initial={{ y: 100 }}
@@ -310,6 +266,53 @@ export default function Home() {
                 </Box>
               </a>
             </Grid>
+            {/* COLOR BG */}
+            <Grid item sx={{ display: { xs: 'block', md: 'none' } }}>
+              <AnimatePresence key={'grid-color-bg-mobile'}>
+                <motion.div
+                  key={1}
+                  initial={{ opacity: 0.6, x: 100, y: 20 }}
+                  animate={{ opacity: 0.4, x: 0, y: 100 }}
+                  exit={{ opacity: 0, x: 20, y: 0 }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                  style={{
+                    position: 'absolute',
+                    // left: '1rem',
+                    // top: '15rem',
+                    width: '11vw',
+                    height: '12vh',
+                    background: '#43D9AD',
+                    opacity: '0.6',
+                    filter: 'blur(90px)',
+                  }}
+                />
+                <motion.div
+                  key={2}
+                  initial={{ opacity: 0.6 }}
+                  animate={{ opacity: 0.4 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '15rem',
+                    right: '1rem',
+                    width: '11vw',
+                    height: '12vh',
+                    background: ' #4D5BCE',
+                    opacity: '0.6',
+                    filter: 'blur(90px)',
+                  }}
+                />
+              </AnimatePresence>
+            </Grid>
           </Grid>
         </Grid>
 
@@ -332,8 +335,8 @@ export default function Home() {
                 right: '26rem',
                 left: 'unset',
                 top: '2rem',
-                width: '30rem',
-                height: '25rem',
+                width: '30vw',
+                height: '25vh',
                 background: '#43D9AD',
                 filter: 'blur(140px)',
                 transform: 'rotate(-94.3deg)',
@@ -353,8 +356,8 @@ export default function Home() {
                 position: 'absolute',
                 bottom: '2rem',
                 right: '15rem',
-                width: '20rem',
-                height: '32rem',
+                width: '20vw',
+                height: '32vh',
 
                 background: ' #4D5BCE',
                 opacity: '0.6',

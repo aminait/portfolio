@@ -97,7 +97,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
             fontSize: '25px',
           }}
         >
-          {closeMenu ? (
+          {isTop && closeMenu ? (
             <CustomIcon
               icon="codicon:chrome-close"
               sx={{ color: '#607B96' }}
@@ -105,7 +105,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
             />
           ) : (
             <>
-              {path === '/' && (
+              {isTop && path === '/' && (
                 <>
                   <AnimatePresence key="mobile-menu-animation">
                     <motion.div
@@ -129,11 +129,13 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
                   </AnimatePresence>
                 </>
               )}
-              <CustomIcon
-                icon={'charm:menu-hamburger'}
-                sx={{ color: '#607B96' }}
-                onClick={toggleMenu}
-              />
+              {isTop && (
+                <CustomIcon
+                  icon={'charm:menu-hamburger'}
+                  sx={{ color: '#607B96' }}
+                  onClick={toggleMenu}
+                />
+              )}
             </>
           )}
         </Grid>
@@ -197,7 +199,7 @@ const HorizontalBar = ({ closeMenu, toggleMenu, isTop, navItems }) => {
           </List>
         </Grid>
       </Grid>
-      {isMobile && path !== '/' && !closeMenu && (
+      {isMobile && path !== '/' && !closeMenu && isTop && (
         <Grid
           sx={{
             display: { xs: 'flex', md: 'none' },

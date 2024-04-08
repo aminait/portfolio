@@ -169,6 +169,7 @@ const About = (props) => {
                   >
                     {openTabs.map((tab, i) => {
                       const matched = tabPanels.find((panel) => panel.name === tab);
+                      console.log('{openTabs.map -> matched:', matched);
                       const unsplitContent = matched.content;
                       const content = matched.type === 'js' && matched.content.split('\n');
                       const length = content.length + 2;
@@ -277,7 +278,7 @@ Intermediate
                     width: 'calc(100% - 2rem)',
                   }}
                 >
-                  {isMobile && (
+                  {/* {isMobile && (
                     <Typography
                       sx={{
                         color: 'white',
@@ -285,9 +286,9 @@ Intermediate
                         marginTop: 0,
                       }}
                     >
-                      {matched.title}
+                      {tabPanels.find((panel) => panel.name === tab).title}
                     </Typography>
-                  )}
+                  )} */}
 
                   <Typography
                     sx={{
